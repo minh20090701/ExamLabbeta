@@ -1,0 +1,46 @@
+{
+  "format": "examlab.quiz.v1",
+  "id": "mau-toan-kiem-tra",
+  "title": "MẪU – Đề Toán (thay bằng đề của bạn)",
+  "subject": "toan",
+  "description": "File mẫu mô tả cách khai báo 3 dạng câu hỏi. Đây là đề mẫu, không phải đề thi chính thức.",
+  "durationMinutes": 45,
+  "questions": [
+    {
+      "id": "cau-1",
+      "type": "short",
+      "text": "Giải phương trình: 2x + 6 = 14. Giá trị của x là bao nhiêu?",
+      "answer": "4",
+      "explanation": "2x + 6 = 14 ⇒ 2x = 8 ⇒ x = 4."
+    },
+    {
+      "id": "cau-2",
+      "type": "single",
+      "text": "Giá trị của √81 là bao nhiêu?",
+      "options": {
+        "A": "7",
+        "B": "8",
+        "C": "9",
+        "D": "10"
+      },
+      "answer": "C",
+      "explanation": "√81 = 9 vì 9² = 81, nên chọn C."
+    },
+    {
+      "id": "cau-3",
+      "type": "multiple",
+      "text": "Chọn tất cả các số nguyên tố:",
+      "options": {
+        "A": "2",
+        "B": "4",
+        "C": "5",
+        "D": "9"
+      },
+      "answer": [
+        "A",
+        "C"
+      ],
+      "explanation": "2 và 5 là số nguyên tố; 4 và 9 là hợp số."
+    }
+  ]
+}

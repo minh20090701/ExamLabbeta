@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="520" viewBox="0 0 780 520" fill="none">
+<defs>
+ <linearGradient id="mountain" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#C49D6A" stop-opacity=".42"/><stop offset="1" stop-color="#A8784C" stop-opacity="0"/></linearGradient>
+ <linearGradient id="roof" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7C2924"/><stop offset="1" stop-color="#461B19"/></linearGradient>
+ <linearGradient id="brick" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#F5E3B8"/><stop offset="1" stop-color="#CFA97B"/></linearGradient>
+ <radialGradient id="sun"><stop stop-color="#E4AC67" stop-opacity=".98"/><stop offset="1" stop-color="#D69A51" stop-opacity=".55"/></radialGradient>
+ <pattern id="paper" width="23" height="23" patternUnits="userSpaceOnUse"><path d="M0 23L23 0" stroke="#A67A53" stroke-opacity=".1"/></pattern>
+</defs>
+<circle cx="562" cy="163" r="97" fill="url(#sun)"/>
+<circle cx="562" cy="163" r="120" stroke="#B67A51" stroke-opacity=".26" stroke-width="1" stroke-dasharray="4 7"/>
+<path d="M0 350C110 317 169 324 249 288C327 254 372 305 438 273C518 236 548 298 634 269C691 249 741 253 780 263V520H0V350Z" fill="url(#mountain)"/>
+<path d="M0 392C107 367 143 399 238 364C305 339 364 385 440 360C509 339 580 375 668 342C711 329 756 343 780 336" stroke="#AF885B" stroke-width="3" opacity=".35"/>
+<!-- temple silhouette -->
+<path d="M180 304L390 242L600 304L570 310L390 265L210 310L180 304Z" fill="#612A21" opacity=".55"/>
+<path d="M201 292L390 210L579 292C561 302 537 303 514 290L390 237L266 290C244 303 221 302 201 292Z" fill="url(#roof)" stroke="#AD7550" stroke-width="3"/>
+<path d="M190 288C225 299 252 298 275 284M505 284C530 298 560 299 590 288" stroke="#E1B877" stroke-width="7" stroke-linecap="round"/>
+<path d="M247 299H533V417H247V299Z" fill="url(#brick)" stroke="#835839" stroke-width="5"/>
+<path d="M275 311H506V414H275V311Z" fill="#E6C99B" opacity=".66"/>
+<rect x="310" y="295" width="160" height="35" rx="3" fill="#5A2825" stroke="#C79B62" stroke-width="3"/>
+<path d="M346 320V303M359 318V305M372 320V304M405 320V304M418 318V305M431 320V303" stroke="#E8C98C" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+<rect x="265" y="328" width="28" height="85" fill="#904D38"/><rect x="488" y="328" width="28" height="85" fill="#904D38"/>
+<path d="M348 419V363C348 340 365 330 390 330C415 330 432 340 432 363V419H348Z" fill="#4E2825" stroke="#8B4D37" stroke-width="5"/>
+<path d="M390 338V416" stroke="#C9A77C" stroke-width="2" opacity=".65"/>
+<path d="M299 398H485M299 391H485" stroke="#7A4D39" stroke-opacity=".6" stroke-width="3"/>
+<path d="M212 417H568L597 447H185L212 417Z" fill="#AF825A" stroke="#7E4A35" stroke-width="3"/>
+<path d="M175 447H608V465H175V447Z" fill="#8A553C"/>
+<path d="M136 475C233 460 338 484 443 472C565 458 664 487 780 467" stroke="#5B4938" stroke-width="4" opacity=".38"/>
+<!-- cloud curls -->
+<g stroke="#B78859" stroke-width="3" opacity=".5" stroke-linecap="round"><path d="M104 173c15-20 50-18 58 0 3 10-10 20-20 9-8-12 9-24 21-16 17-7 41 3 47 18h35"/><path d="M581 82c12-19 43-18 47 0 3 12-15 21-22 8-5-12 11-20 20-12h44"/><path d="M35 253c20-20 42-10 45 0 3 11-9 18-18 9-5-11 10-17 16-9h45"/></g>
+<!-- bamboo right -->
+<g stroke="#526A44" opacity=".85" stroke-linecap="round"><path d="M684 465C703 383 691 274 717 194" stroke-width="7"/><path d="M705 337C680 327 667 310 659 286M703 310C732 292 744 260 751 234M709 272C695 247 686 227 681 207" stroke-width="3"/><path d="M699 279C646 261 639 239 652 237C675 237 694 259 699 279Z" fill="#71835A"/><path d="M708 298C745 265 765 260 771 272C766 285 746 299 708 298Z" fill="#708456"/><path d="M700 344C659 335 637 319 640 307C653 299 678 321 700 344Z" fill="#667E53"/></g>
+<!-- ink stamped seal -->
+<rect x="126" y="358" width="79" height="79" rx="4" stroke="#9A3B2D" stroke-width="5" opacity=".63" transform="rotate(-9 126 358)"/>
+<path d="M144 384h35M151 400h28M161 374v48" stroke="#9A3B2D" stroke-width="6" opacity=".6"/>
+<rect x="0" y="0" width="780" height="520" fill="url(#paper)" opacity=".18"/>
+</svg>

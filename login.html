@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="vi">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ <meta name="theme-color" content="#542821">
+ <meta name="description" content="Không gian tài khoản của ExamLab Khoa Bảng, đăng ký, đăng nhập và quản lý hồ sơ học tập">
+ <title>Tài khoản · ExamLab Khoa Bảng</title>
+ <script>try{document.documentElement.dataset.theme=localStorage.getItem('examlab.theme')==='dark'?'dark':'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
+ 
+ 
+  
+
+
+
+<link rel="stylesheet" href="css/base.css?v=6">
+<link rel="stylesheet" href="css/login.css?v=6">
+<link rel="stylesheet" href="css/mobile-controls.css?v=6">
+<link rel="stylesheet" href="css/theme.css?v=6">
+</head>
+<body class="auth-page">
+ <header class="auth-top">
+  <a class="brand" href="index.html" aria-label="Quay lại ExamLab">
+   <span class="brand-icon" aria-hidden="true">文</span><span class="brand-words"><b>EXAM<span>LAB</span></b><small>TRƯỜNG THI KHOA BẢNG</small></span>
+  </a>
+  <div class="top-actions">
+   <button id="themeToggle" type="button" class="icon-action theme-button" data-examlab-theme-toggle aria-label="Đổi giao diện sáng tối"><svg class="theme-symbol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2m4.93-17.07-1.42 1.42M6.49 17.51l-1.42 1.42M22 12h-2M4 12H2m17.07 7.07-1.42-1.42M6.49 6.49 5.07 5.07"/></svg></button>
+   <a class="back-link" href="index.html">← Về tủ đề</a>
+  </div>
+ </header>
+ <main class="auth-main">
+  <section class="auth-story" aria-label="Giới thiệu ExamLab">
+   <div class="eyebrow">✦ TRƯỜNG THI KHOA BẢNG</div>
+   <h1>Học để hiểu.<br>Thi để trưởng thành.</h1>
+   <p>Gìn giữ nếp hiếu học trong một không gian ôn tập hiện đại. Một hành trình nhỏ, từng trang sách, từng kỳ thi.</p>
+   <div class="story-quote"><span>TRI THỨC LÀ</span><span>NGỌN ĐÈN DẪN LỐI</span></div>
+  </section>
+  <section class="auth-card" aria-label="Khu vực tài khoản">
+   <div class="eyebrow">HỒ SƠ SĨ TỬ</div>
+   <h2 id="authTitle">Vào thư phòng</h2>
+   <p class="auth-desc" id="authDescription">Đăng nhập để tiếp tục hành trình ôn tập của bạn.</p>
+   <div id="authLoggedIn" hidden></div>
+   <div id="authPublic">
+    <div class="auth-tabs" role="tablist" aria-label="Chọn hình thức tài khoản">
+     <button class="auth-tab" type="button" data-auth-tab="login" role="tab" aria-selected="true">Đăng nhập</button>
+     <button class="auth-tab" type="button" data-auth-tab="register" role="tab" aria-selected="false">✦ Đăng ký</button>
+    </div>
+    
+    <form class="auth-form" id="authForm" autocomplete="on">
+      <div id="nameWrap" hidden>
+       <label for="authName">Tên hiển thị</label>
+       <input type="text" id="authName" name="displayName" autocomplete="nickname" minlength="2" maxlength="32" placeholder="Ví dụ: Sĩ tử Minh">
+      </div>
+      <label for="authEmail">Địa chỉ email</label>
+      <input type="email" id="authEmail" name="email" placeholder="ban@example.com" autocomplete="email" required>
+      <label for="authPassword">Mật khẩu</label>
+      <input type="password" id="authPassword" name="password" placeholder="Tối thiểu 8 ký tự" autocomplete="current-password" minlength="8" maxlength="128" required>
+      <div id="confirmPasswordWrap" hidden>
+       <label for="authConfirm">Xác nhận mật khẩu</label>
+       <input type="password" id="authConfirm" placeholder="Nhập lại mật khẩu" autocomplete="new-password" minlength="8" maxlength="128">
+      </div>
+      <button type="submit" class="btn btn-primary" id="authSubmit">Đăng nhập</button>
+    </form>
+    <div class="auth-switch"><button type="button" id="forgotPassword">Quên mật khẩu?</button></div>
+    <div class="auth-alert" id="authStatus" role="status">Đăng ký bằng email và xác minh hộp thư để kích hoạt tài khoản.</div>
+    <div class="auth-divider">HOẶC TIẾP TỤC KHÔNG CẦN TÀI KHOẢN</div>
+    <div class="auth-guest">
+      <label class="field-label" for="guestAlias">Tên hiển thị (không bắt buộc)</label>
+      <input id="guestAlias" type="text" maxlength="32" placeholder="Ví dụ: Sĩ tử" autocomplete="nickname">
+      <button class="btn btn-ghost" type="button" id="guestLogin">Tiếp tục với tư cách khách</button>
+    </div>
+    <p class="auth-footnote"><strong>Lưu ý:</strong> Đăng nhập để sử dụng tài khoản trên nhiều thiết bị. Chế độ khách chỉ lưu hoạt động trên thiết bị hiện tại.</p>
+   </div>
+  </section>
+ </main>
+ <footer class="footer"><div class="foot-decor">❖ ── ✦ ── ❖</div><b>EXAMLAB · KHOA BẢNG</b><span>Chăm học mỗi ngày · Vững vàng trường thi</span></footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+ <script src="supabase-config.js"></script>
+ <script src="js/supabase-client.js?v=6"></script>
+<script src="js/theme.js?v=6"></script>
+
+ <script src="js/auth-adapter.js?v=6"></script>
+ <script src="js/auth.js?v=6"></script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+/* source: mobile-layout-fix.css */
+
+/* ExamLab responsive patch v2 — no page-wide horizontal scrolling. */
+html { width:100%; max-width:100%; overflow-x:clip; }
+body { width:100%; max-width:100%; overflow-x:clip; }
+#app, .topbar, .topbar-inner, .view, .docs-wrap, .admin-wrap {min-width:0; max-width:100%;}
+[data-admin-only][hidden], [data-admin-guard][hidden], #adminPermissionScreen[hidden] {display:none!important;}
+.admin-permission-status {margin:clamp(20px,5vw,45px) auto;max-width:620px;width:calc(100% - 30px);background:var(--card,#fff9ef);border:1px solid var(--line,#e0c9a6);border-radius:15px;padding:24px;line-height:1.7;color:var(--ink,#48271f);}
+.admin-permission-status h2 {margin:0 0 10px;font-size:clamp(19px,5vw,26px)}
+.admin-permission-status p {margin:0 0 15px;overflow-wrap:anywhere}
+/* Ensure grid children cannot enlarge the viewport. */
+.hero, .hero-copy, .stat-row, .stat-card, .deck-grid, .deck-card, .docs-hero, .docs-hero-content,
+.admin-stat-row, .admin-stat, .admin-workspace, .admin-panel, .admin-hero, .admin-library,
+.admin-editor-shell, .docs-grid, .section-heading, .toolbar {min-width:0;max-width:100%;}
+/* Large-screen menu: reduce chance of clipping and let unused space shrink. */
+@media (min-width:761px) {
+  .topbar-inner {gap:clamp(9px,1.6vw,22px);}
+  .header-nav, .admin-header-nav {min-width:0;}
+  .nav-link {padding-inline:clamp(6px,.7vw,12px);}
+}
+/* Phones: second-row menu scrolls WITHIN the menu, never moves the document. */
+@media (max-width:760px) {
+  .topbar {width:100%;max-width:100%;overflow:hidden;}
+  .topbar-inner, .admin-topbar .topbar-inner {display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:10px!important;align-items:center!important;padding:12px 14px 8px!important;min-height:0!important;width:100%!important;box-sizing:border-box!important;}
+  .topbar .brand {grid-column:1!important;grid-row:1!important;min-width:0!important;max-width:100%;width:auto!important;gap:10px;overflow:hidden;white-space:normal;}
+  .topbar .brand-icon {flex:0 0 38px;min-width:38px;width:38px;height:38px;}
+  .topbar .brand-words {min-width:0;max-width:100%;overflow:hidden;}
+  .topbar .brand-words b {font-size:clamp(16px,4.5vw,20px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .topbar .brand-words small {font-size:clamp(7px,1.9vw,9px);letter-spacing:.035em;white-space:normal;line-height:1.24;}
+  .topbar .top-actions {grid-column:2!important;grid-row:1!important;margin:0!important;justify-content:end;min-width:0;gap:5px;}
+  .topbar .top-actions .header-back {display:none;}
+  .topbar .top-actions .icon-action,.topbar .top-actions .account-link {width:40px;min-width:40px;height:40px;padding:5px;display:grid;place-items:center;}
+  .topbar .header-nav, .topbar .admin-header-nav {grid-column:1/-1!important;grid-row:2!important;order:unset!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;flex-wrap:nowrap!important;width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important;gap:5px!important;padding:9px 0 5px!important;border-top:1px solid #d5b48138;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scroll-snap-type:x proximity;}
+  .topbar .header-nav::-webkit-scrollbar,.topbar .admin-header-nav::-webkit-scrollbar {display:none;}
+  .topbar .header-nav > *, .topbar .admin-header-nav > * {flex:0 0 auto!important;white-space:nowrap!important;max-width:none;scroll-snap-align:start;font-size:12px!important;line-height:1.4;padding:8px 11px!important;border-radius:8px;}
+  .topbar .header-nav [hidden], .topbar .admin-header-nav [hidden] {display:none!important;}
+  .view, .docs-wrap, .admin-wrap {padding-left:12px!important;padding-right:12px!important;width:100%!important;}
+  .hero, .docs-hero, .admin-hero {padding:22px 17px!important;}
+  .hero h1,.admin-hero h1,.docs-hero h1{overflow-wrap:break-word;word-break:normal;line-height:1.27!important;font-size:clamp(26px,6.3vw,37px)!important;}
+  .hero p, .docs-hero p, .admin-hero p {overflow-wrap:break-word;}
+  .stat-row{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;}
+  .stat-card{padding:10px 8px!important;min-width:0!important;overflow:hidden;}
+  .stat-card .stat-num{font-size:clamp(18px,5vw,25px)!important;}
+  .stat-card .stat-caption{font-size:clamp(9px,2.6vw,11px)!important;}
+  .admin-stat-row {grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  .admin-stat {min-width:0;}
+  .docs-admin-tablewrap,.table-scroll {max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;}
+  .section-heading, .docs-section-head {min-width:0;}
+  .section-heading h2 {overflow-wrap:break-word;}
+  .question-card, .q-content, .exam-view, .exam-grid, .exam-questions {min-width:0;max-width:100%;}
+  .floating-palette {right:12px;max-width:calc(100vw - 24px);}
+}
+@media (max-width:360px){
+  .topbar .brand-icon{flex-basis:34px;width:34px;height:34px;min-width:34px;}
+  .topbar .top-actions .icon-action, .topbar .top-actions .account-link{width:35px;height:35px;min-width:35px;}
+  .topbar .header-nav > *, .topbar .admin-header-nav > * {font-size:11px!important;padding:7px 9px!important;}
+  .hero, .docs-hero,.admin-hero {padding:19px 13px!important;}
+}
+
+
+/* ==== Patch: fix icon alignment + mobile polish ==== */
+html,body{max-width:100%;overflow-x:hidden}
+:root{--ui-icon-size:1em}
+.stat-card,.subject-tab,.subject-badge,.admin-stat,.deck-meta span,.btn,.nav-link{min-width:0}
+.stat-ico,
+.subject-tab .ui-ico,
+.subject-badge .ui-ico,
+.admin-stat > span,
+.quick-chip .ui-ico,
+.deck-meta .meta-ico,
+.icon-bullet{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  line-height:1!important;
+  text-align:center!important;
+  flex:0 0 auto!important;
+}
+.stat-ico{font-family:Georgia,serif;line-height:1!important;padding-top:0!important}
+.stat-card > div{min-width:0}
+.stat-caption{line-height:1.35}
+.subject-tab{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:6px!important;
+}
+.subject-tab .ui-ico,
+.subject-badge .ui-ico{
+  width:1.15em;
+  height:1.15em;
+  font-size:1em;
+  transform:translateY(-.02em);
+}
+.subject-badge{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:7px!important;
+}
+.deck-meta span{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:6px!important;
+}
+.admin-stat{
+  grid-template-columns:48px 1fr!important;
+  align-items:center!important;
+}
+.admin-stat > span{
+  width:38px;
+  height:38px;
+  border:1px solid var(--line);
+  border-radius:6px;
+  background:var(--soft);
+  font-size:22px!important;
+}
+input.search-field{padding-inline:14px!important}
+input.search-field::placeholder{letter-spacing:0}
+@media(max-width:760px){
+  .subjects{grid-template-columns:repeat(5,minmax(0,1fr))!important;align-items:stretch!important}
+  .subject-tab{min-height:42px!important;white-space:normal!important;line-height:1.25!important;flex-direction:column!important;gap:4px!important;padding:8px 2px!important}
+  .subject-tab .ui-ico{font-size:13px;width:auto;height:auto}
+  .stat-row{align-items:stretch!important}
+  .stat-card{justify-content:flex-start!important}
+  .stat-ico{width:34px!important;height:34px!important;font-size:18px!important}
+  .deck-card{overflow:hidden}
+  .deck-card h3{max-width:100%!important}
+  .deck-meta{row-gap:7px!important}
+  .search-field{font-size:16px!important}
+}
+@media(max-width:390px){
+  .stat-card{padding:10px 9px!important}
+  .stat-num{font-size:20px!important}
+  .stat-caption{font-size:10px!important}
+  .subject-tab{font-size:10px!important}
+}
+
+
+/* Cải thiện nút sáng/tối và hồ sơ, tránh lỗi ký tự icon trên Android */
+.topbar .top-actions,.auth-top .top-actions{display:flex;align-items:center;gap:8px;min-width:0}
+
+
+
+
+
+.profile-top-link{display:inline-flex!important;align-items:center!important;justify-content:flex-start!important;gap:8px!important;min-width:0;max-width:210px;padding:6px 10px!important;text-decoration:none;cursor:pointer}
+.profile-top-link .account-mark{display:grid;place-items:center;flex:0 0 25px;width:25px;height:25px;font:700 14px/1 system-ui,sans-serif}
+.profile-top-link .account-link-label{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-width:0;max-width:100%;line-height:1.22}
+.profile-top-link .account-pre{font-size:9px;font-weight:700;letter-spacing:.03em;color:#e5c59a}
+.profile-top-link .account-word{display:block!important;max-width:100%;font-size:12px!important;font-weight:800!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:inherit}
+.profile-top-link:focus-visible{outline:2px solid #f0c98c;outline-offset:3px}
+@media(max-width:1120px){.profile-top-link{max-width:170px}}
+@media(max-width:760px){
+  .topbar .top-actions{gap:6px!important}
+  
+  .topbar .top-actions .profile-top-link{display:flex!important;width:auto!important;min-width:92px!important;max-width:145px!important;height:41px!important;padding:4px 8px!important}
+  .topbar .top-actions .profile-top-link .account-word{display:block!important;font-size:11px!important;max-width:100%}
+  .topbar .top-actions .profile-top-link .account-pre{font-size:9px!important}
+  .topbar .top-actions .profile-top-link .account-mark{width:22px;height:22px;flex-basis:22px}
+  .topbar .brand{min-width:0!important}
+}
+@media(max-width:390px){
+  .topbar .top-actions .profile-top-link{max-width:116px!important;min-width:87px!important;gap:5px!important}
+  .topbar .top-actions .profile-top-link .account-word{font-size:10px!important}
+  .topbar .brand-words b{font-size:clamp(15px,4vw,18px)!important}
+}
+/* Cân lại thẻ thống kê và icon trong các phần tử nhỏ trên điện thoại */
+.stat-ico,.subject-badge .ui-ico,.subject-tab .ui-ico,.admin-stat>span{vertical-align:middle;line-height:1!important}
+@media(max-width:760px){
+  .stat-ico{display:inline-flex!important;align-items:center!important;justify-content:center!important}
+  .subject-badge,.subject-tab{align-items:center!important}
+}
+

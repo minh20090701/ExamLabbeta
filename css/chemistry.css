@@ -1,0 +1,25 @@
+/* source: chemistry-fixes.css */
+
+
+/* Chemistry reading and source-table patch */
+.q-content{overflow-wrap:break-word;word-break:normal;line-height:1.8}
+.q-content p{white-space:normal;margin:.65em 0 1em}
+.q-content table{border-collapse:collapse;min-width:0;width:max-content;max-width:none;table-layout:auto}
+.q-content .table-scroll{max-width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+.q-content td,.q-content th{white-space:normal;word-break:normal;overflow-wrap:normal;vertical-align:middle}
+.q-content .chem-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0;overflow-x:auto;max-width:100%;padding:2px}
+.q-content .chem-spec{min-width:330px;overflow:visible;background:var(--card, #fcf6ed);border:1px solid #d9c7ac;border-radius:12px;padding:14px}
+.q-content .chem-spec>strong{display:block;color:#9c4a2d;margin-bottom:12px}
+.q-content .chem-structure{font-family:"DejaVu Sans Mono",Consolas,monospace;font-size:13px;line-height:1.5;white-space:nowrap;width:max-content}
+.q-content .chem-structure>div{white-space:nowrap}
+.q-content .chem-structure>.chem-bond{font-weight:700;line-height:1.15;padding-left:8px}
+.q-content .equation-scroll{overflow-x:auto;max-width:100%;padding:12px 0;-webkit-overflow-scrolling:touch}
+.q-content .equation{font-family:"DejaVu Sans",Arial,sans-serif;white-space:nowrap;line-height:2.1;min-width:max-content;font-size:clamp(14px,3.7vw,17px);margin:5px 0}
+.q-content .reaction-chain{display:flex;align-items:center;gap:8px;max-width:100%;overflow:auto;padding:20px 2px;white-space:nowrap;-webkit-overflow-scrolling:touch}
+.q-content .reaction-chain>span{flex-shrink:0}
+.q-content .reaction-arrow{display:inline-flex;vertical-align:middle;align-items:center;flex-direction:column;line-height:1.25;flex-shrink:0;white-space:nowrap}
+.q-content .reaction-arrow small{font-size:11px;line-height:1.5}
+.q-content .reaction-arrow>span{font-size:24px;line-height:1}
+.q-content sub,.q-content sup{line-height:0;position:relative}
+@media(max-width:700px){.q-content .chem-pair{display:flex;flex-direction:column;gap:12px}.q-content .chem-spec{width:max-content;min-width:100%;}.q-content .chem-structure{font-size:12px}.q-content .table-scroll table{min-width:480px}.q-content .table-scroll{overscroll-behavior-x:contain}.q-content .reaction-chain{font-size:14px}}
+

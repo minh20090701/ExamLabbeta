@@ -1,0 +1,29 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#532620"><title>Duyệt tài liệu · ExamLab Khoa Bảng</title>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('examlab.theme')==='dark'?'dark':'light'}catch(e){}</script>  
+ 
+
+
+
+<link rel="stylesheet" href="css/base.css?v=6">
+<link rel="stylesheet" href="css/docs.css?v=6">
+<link rel="stylesheet" href="css/site-polish.css?v=6">
+<link rel="stylesheet" href="css/mobile-layout.css?v=6">
+<link rel="stylesheet" href="css/mobile-controls.css?v=6">
+<link rel="stylesheet" href="css/theme.css?v=6">
+</head>
+<body class="docs-body"><header class="topbar"><div class="topbar-inner"><a class="brand" href="index.html"><span class="brand-icon">文</span><span class="brand-words"><b>EXAM<span>LAB</span></b><small>PHÒNG DUYỆT TÀI LIỆU</small></span></a><nav class="header-nav" aria-label="Điều hướng"><a class="nav-link" href="index.html">Tủ đề</a><a class="nav-link" href="documents.html">Thư viện tài liệu</a><a class="nav-link" href="admin.html" data-admin-only hidden>Quản lý đề</a><a class="nav-link is-active" data-admin-only hidden href="admin-docs.html" aria-current="page">Duyệt tài liệu</a></nav><div class="top-actions"><button id="themeToggle" type="button" class="icon-action theme-button" data-examlab-theme-toggle aria-label="Đổi giao diện sáng tối"><svg class="theme-symbol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2m4.93-17.07-1.42 1.42M6.49 17.51l-1.42 1.42M22 12h-2M4 12H2m17.07 7.07-1.42-1.42M6.49 6.49 5.07 5.07"/></svg></button><a class="account-link profile-top-link" id="accountLink" href="login.html" aria-label="Xem hồ sơ và tài khoản"><span class="account-mark" aria-hidden="true">✦</span><span class="account-link-label"><span class="account-pre">Hồ sơ</span><span class="account-word" id="accountLabel">Tài khoản</span></span></a></div></div></header>
+<section id="adminPermissionScreen" class="admin-permission-status" role="status" aria-live="polite"><h2>Đang xác minh quyền quản trị</h2><p>Đang kiểm tra tài khoản…</p></section>
+<main class="docs-wrap" data-admin-guard hidden><div class="docs-admin-header"><div><div class="docs-eyebrow">❖ THƯ PHÒNG QUẢN TRỊ</div><h1>Kiểm duyệt tài liệu</h1><p>Chỉ duyệt tài liệu được thành viên đề xuất công khai. Không hiển thị tài liệu riêng tư trong bảng duyệt.</p></div><a class="btn btn-ghost" href="documents.html">← Về thư viện</a></div>
+<div class="docs-notice"><strong>Duyệt và quản lý tài liệu.</strong> Chỉ tài khoản Admin được cấp quyền trong database mới có thể duyệt / từ chối tài liệu công khai. Admin không được đọc tài liệu riêng tư của thành viên.</div>
+<section class="docs-stats"><div><span>⌛</span><strong id="statPending">0</strong><small>Chờ duyệt</small></div><div><span>✓</span><strong id="statApproved">0</strong><small>Đã công khai</small></div><div><span>✕</span><strong id="statRejected">0</strong><small>Đã từ chối</small></div></section>
+<div class="docs-admin-filters"><button type="button" data-filter="pending" class="active">Chờ duyệt</button><button type="button" data-filter="approved">Đã duyệt</button><button type="button" data-filter="rejected">Bị từ chối</button><button type="button" data-filter="all">Tất cả (công khai)</button></div>
+<div class="docs-admin-tablewrap"><table class="docs-admin-table"><thead><tr><th>Tài liệu</th><th>Môn</th><th>Người đăng</th><th>Ngày gửi</th><th>Trạng thái</th><th>Kiểm duyệt</th></tr></thead><tbody id="adminDocsRows"><tr><td colspan="6">Đang tải...</td></tr></tbody></table></div>
+<p class="docs-fineprint">Tài liệu riêng tư được bảo vệ theo quyền truy cập. File công khai chỉ xuất hiện sau khi được duyệt.</p>
+</main><footer class="footer"><b>EXAMLAB · KHOA BẢNG</b><small>Chia sẻ có trách nhiệm · Gìn giữ tri thức</small></footer><div class="docs-toast" id="docsToast" role="status" aria-live="polite"></div>
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+ <script src="supabase-config.js"></script>
+ <script src="js/supabase-client.js?v=6"></script>
+<script src="js/theme.js?v=6"></script>
+<script src="js/auth-adapter.js?v=6"></script><script src="js/admin-auth.js?v=6"></script><script src="js/role-visibility.js?v=6"></script><script src="js/docs-store.js?v=6"></script><script src="js/admin-docs.js?v=6"></script>
+<script src="js/visible-profile-name.js?v=6"></script>
+</body></html>

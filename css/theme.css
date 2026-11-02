@@ -1,0 +1,19 @@
+/* ExamLab V6: one theme switch, single SVG icon, no legacy selectors. */
+.theme-button {
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;
+ flex:0 0 44px!important;margin:0!important;padding:0!important;box-sizing:border-box!important;
+ border:1px solid rgba(228,195,153,.32)!important;border-radius:12px!important;
+ color:#f5d5a4!important;background:rgba(244,223,191,.11)!important;
+ cursor:pointer!important;line-height:1!important;transition:background-color .16s, transform .12s!important;
+ -webkit-appearance:none!important;appearance:none!important;
+}
+.theme-button .theme-symbol {display:block!important;width:22px!important;height:22px!important;
+ min-width:22px!important;max-width:22px!important;min-height:22px!important;max-height:22px!important;
+ stroke:currentColor!important;fill:none!important;box-sizing:border-box!important;pointer-events:none!important;}
+.theme-button:hover {background:rgba(244,223,191,.22)!important;}
+.theme-button:active {transform:scale(.96)!important;}
+.theme-button:focus-visible {outline:3px solid #dab07c!important;outline-offset:2px!important;}
+html[data-theme="light"] .theme-button {color:#efcf9d!important;}
+html[data-theme="light"] .exam-theme-toggle.theme-button {color:#6d3a2d!important;background:rgba(125,73,44,.09)!important;border-color:rgba(125,73,44,.28)!important;}
+@media(max-width:420px){.theme-button{width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;flex-basis:42px!important}}

@@ -1,0 +1,21 @@
+EXAMLAB KHOA BANG - BAN NGUON GON V6 (02-11-2026)
+
+HUONG DAN UP GITHUB:
+1. Sao luu repository GitHub dang chay truoc khi thay the.
+2. Xoa cac file CSS/JS CU chi o thu muc GOC repository (styles.css, theme.js, app.js, ...), KHONG xoa supabase-config.js.
+3. Neu muon cap nhat sach hoan toan: thay 6 HTML, 2 thu muc css/ va js/ bang 6 HTML, css/ va js/ cua ZIP nay.
+4. Upload ca data/ neu dang dung. Khong upload ZIP nguyen ven; can giai nen.
+5. Bat GitHub Pages (main, /(root)) va refresh (Ctrl + Shift + R) / mo tab an danh.
+6. Nut sang/toi chi con MOT xu ly trong js/theme.js. Co 1 icon SVG 22px, bam de doi ngay.
+7. ExamLab giu nguyen seedBank trong index.html, Supabase config, quan tri, popup nop bai.
+
+DON DEP:
+- Xoa source-backup/ va docs/ khoi GOI TRIỂN KHAI, khong phai xoa du lieu tren Supabase.
+- Gom styles.css + heritage.css vao css/base.css.
+- Gom 2 ban mobile-theme-repair gan trung nhau vao css/mobile-controls.css.
+- Gom ui-polish reset va reset-inline vao css/reset.css.
+- Bo js/theme-v5.js trung lap js/theme.js, bo script fallback click trung trong HTML.
+- Bo cac rule icon theme cu trong patch mobile/login; giu 1 css/theme.css.
+- Khong minify JS nghiep vu de con de doc, sua va kiem tra.
+
+CANH BAO: Dung PUBLIC Supabase URL va PUBLISHABLE key. KHONG UP secret/service_role key.

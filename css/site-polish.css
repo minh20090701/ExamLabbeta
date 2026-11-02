@@ -1,0 +1,114 @@
+/* source: ui-polish--index.css */
+
+/* ExamLab Khoa Bang / Ban chinh sua giao dien - tieng Viet, 31-10-2026 */
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif:wght@400;500;600;700;800&display=swap");
+:root { --font-body:"Be Vietnam Pro","Segoe UI",Arial,sans-serif; --font-head:"Noto Serif","DejaVu Serif","Times New Roman",serif; }
+html { font-size: 15px; }
+body,button,input,textarea,select,option { font-family:var(--font-body)!important; }
+body { line-height:1.7; overflow-wrap:break-word; text-rendering:optimizeLegibility; }
+h1,h2,h3,h4,h5,h6,.brand-words b,.hero-heading-accent,.stat-num,.grade-circle strong,.docs-card h3,.docs-hero h1,.docs-section-head h2,.docs-dialog-head h2,.docs-detail h3,.docs-admin-header h1,.admin-panel-head h2,.admin-hero h1,.auth-story h1,.auth-card h2,.hero h1,.step-num,.footer b {font-family:var(--font-head)!important;letter-spacing:-.02em;}
+.brand-words b {font-size:22px;letter-spacing:.02em;}
+.brand-words small {font-family:var(--font-body)!important;font-size:10px;letter-spacing:.09em;line-height:1.35;}
+.brand-icon,.hero-stamp,.hero-art-label strong {font-family:var(--font-head)!important;}
+.nav-link,.account-link,.icon-action,.btn,.auth-tab,.docs-tabs button {font-family:var(--font-body)!important;}
+.nav-link {font-size:13px;letter-spacing:0;}
+.eyebrow,.hero-kicker,.docs-eyebrow {letter-spacing:.11em;line-height:1.55;}
+textarea,input,select{max-width:100%;}
+textarea{font-family:var(--font-body)!important;line-height:1.65;}
+[hidden]{display:none!important;}
+.auth-page{overflow-x:clip;}
+.auth-main{grid-template-columns:minmax(0,1fr) minmax(380px,460px);gap:28px;align-items:center;}
+.auth-story{box-shadow:0 16px 45px rgba(82,51,22,.12);}
+.auth-story h1{line-height:1.4;letter-spacing:-.035em;}
+.auth-card{border-top:4px solid var(--gold);border-radius:16px;box-shadow:0 20px 50px rgba(86,46,26,.12);padding:31px;}
+.auth-card h2{font-size:clamp(23px,2.7vw,29px);line-height:1.45;}
+.auth-desc{font-size:13px;line-height:1.8;}
+.auth-form label,.field-label{font-size:12px;}
+.auth-form .btn{min-height:49px;}
+.auth-guest{background:var(--soft);padding:14px;border:1px solid var(--line);border-radius:11px;}
+.auth-footnote{font-size:11px;}
+.auth-alert{border-radius:8px;}
+.auth-card a:hover{text-decoration:none;}
+.auth-logged-card{display:flex;flex-direction:column;gap:17px;}
+.profile-banner{position:relative;display:grid;grid-template-columns:70px minmax(0,1fr);gap:15px;align-items:center;padding:18px;border-radius:14px;border:1px solid var(--hero-border);background:linear-gradient(130deg,var(--soft),var(--card));overflow:hidden;}
+.profile-banner::after{content:"印";position:absolute;right:10px;top:4px;font:700 86px var(--font-head);color:var(--gold);opacity:.08;pointer-events:none;}
+.profile-avatar{display:grid;place-items:center;width:70px;height:70px;border-radius:15px;border:2px solid var(--gold);box-shadow:inset 0 0 0 4px var(--card);background:linear-gradient(145deg,var(--deep2),var(--headbg));color:#ffe5b4;font:700 30px/1 var(--font-head);}
+.profile-eyebrow{color:var(--violet);font-size:10px;letter-spacing:.1em;font-weight:800;}
+.profile-name{font:750 clamp(18px,2vw,23px)/1.4 var(--font-head);margin:5px 0 3px;overflow-wrap:anywhere;}
+.profile-email{font-size:12px;color:var(--muted);overflow-wrap:anywhere;line-height:1.55;}
+.profile-badges{display:flex;gap:7px;flex-wrap:wrap;}
+.profile-badge{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:999px;padding:6px 10px;background:var(--soft);color:var(--ink);font-size:10px;font-weight:750;line-height:1.35;}
+.profile-badge.is-good{background:var(--goodbg);border-color:color-mix(in srgb,var(--good) 32%,transparent);color:var(--good);}
+.profile-badge.is-admin{background:var(--violetsoft);border-color:var(--hero-border);color:var(--violet);}
+.profile-section-heading{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;}
+.profile-section-heading::after{content:"";height:1px;background:var(--line);flex:1;}
+.profile-shortcuts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+.profile-shortcut{display:flex;min-height:110px;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:8px;padding:15px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);text-decoration:none;transition:transform .18s,box-shadow .18s,border-color .18s;}
+.profile-shortcut:hover{transform:translateY(-2px);border-color:var(--gold);box-shadow:var(--shadow);color:var(--ink);}
+.profile-shortcut .profile-icon{display:grid;place-items:center;width:33px;height:33px;border-radius:9px;background:var(--soft);color:var(--violet);font-size:19px;}
+.profile-shortcut strong{font-size:12px;font-weight:800;line-height:1.45;}
+.profile-shortcut small{font-size:10px;color:var(--muted);line-height:1.5;}
+.profile-extra{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+.profile-extra > div{border:1px solid var(--line);border-radius:11px;background:var(--soft);padding:12px;min-width:0;}
+.profile-extra strong{display:block;margin-top:4px;font-size:13px;line-height:1.5;overflow-wrap:anywhere;}
+.profile-extra small{font-size:10px;color:var(--muted);}
+.profile-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:13px;}
+.profile-actions a{font-size:12px;font-weight:800;}
+.profile-logout{min-height:41px;border:1px solid var(--line);border-radius:9px;padding:9px 13px;background:var(--card);color:var(--ink);font-weight:750;cursor:pointer;}
+.profile-logout:hover{background:var(--badbg);border-color:var(--bad);color:var(--bad);}
+.profile-admin-link{display:flex;gap:10px;align-items:center;border:1px solid var(--gold);border-radius:11px;background:var(--note-bg);color:var(--note-ink);padding:11px 13px;text-decoration:none;font-size:12px;font-weight:800;}
+.profile-admin-link:hover{color:var(--note-ink);filter:brightness(.98);}
+.auth-card.is-logged{border-top-color:var(--good);}
+.auth-card.is-logged .auth-desc{margin-bottom:15px;}
+.hero,.docs-hero{overflow:hidden;}
+.hero h1,.docs-hero h1{line-height:1.38;}
+.stat-num{font-size:27px;}
+.footer small{max-width:800px;}
+.admin-warning,.docs-notice{font-size:12px;line-height:1.75;}
+@media(max-width:950px){.auth-main{grid-template-columns:1fr 1fr;gap:18px}.auth-card{padding:24px}.auth-story{min-height:570px;padding:28px 25px 270px}}
+@media(max-width:760px){.auth-main{grid-template-columns:1fr;width:calc(100% - 28px);margin:14px auto 32px;gap:12px}.auth-story{min-height:0;padding:20px 21px 21px}.auth-story h1{font-size:clamp(25px,7vw,34px);margin:8px 0;line-height:1.45}.auth-story p{font-size:12px;line-height:1.8}.auth-story:after,.auth-story .story-quote{display:none}.auth-card{padding:24px 21px}.auth-top{width:calc(100% - 28px)}.profile-banner{grid-template-columns:59px minmax(0,1fr)}.profile-avatar{width:59px;height:59px;font-size:25px}}
+@media(max-width:385px){.profile-shortcuts{gap:7px}.profile-shortcut{padding:11px;min-height:112px}.profile-extra{grid-template-columns:1fr}.auth-card{padding:20px 15px}.profile-banner{padding:13px;gap:10px}}
+@media(prefers-reduced-motion:reduce){.profile-shortcut{transition:none}.profile-shortcut:hover{transform:none}}
+
+/* Final readability adjustments */
+.profile-shortcut strong,.profile-shortcut small{display:block;}
+.profile-shortcut small{margin-top:4px;}
+.auth-top .brand,.auth-top .brand *{text-decoration:none!important;}
+.profile-date{display:block;color:var(--muted);font-size:11px;margin-top:-4px;}
+
+
+/* Fix: câu hóa học – cấu trúc phân tử, bảng IR, xuống dòng mobile. */
+.q-content{overflow-wrap:normal;word-break:normal;line-height:1.72}
+.q-content p{white-space:normal;overflow-wrap:break-word;margin:.45em 0 .95em}
+.q-content .qbullet{margin:.45em 0;padding-left:.5rem}
+.q-content .table-scroll{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.q-content table{min-width:max-content;width:100%;table-layout:auto;border-collapse:collapse}
+.q-content td,.q-content th{white-space:normal;word-break:normal;overflow-wrap:normal;vertical-align:middle}
+.q-content .ir-table{min-width:430px;width:100%}
+.q-content .ir-table td,.q-content .ir-table th{white-space:nowrap}
+.q-content .chem-structures{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}
+.q-content .chem-structure{min-width:0;max-width:100%;overflow-x:auto;border:1px solid var(--line,#e1d3bd);border-radius:12px;padding:12px;background:rgba(175,127,69,.035)}
+.q-content .chem-structure h4{margin:0 0 8px;font-size:1rem}
+.q-content .chem-struct-lines{display:block;width:max-content;max-width:none;min-width:100%;font:clamp(12px,1.2vw,15px)/1.5 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;white-space:nowrap}
+.q-content .chem-struct-lines>div{white-space:nowrap;min-height:1.5em}
+.q-content .chem-struct-lines .chem-branch{height:1.3em;min-height:0;line-height:1.2;margin-left:1ch}
+.q-content .chem-equation-wrap{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line,#e1d3bd);padding:14px 12px;border-radius:12px;margin:12px 0}
+.q-content .chem-equation{width:max-content;min-width:100%;display:flex;align-items:center;justify-content:center;gap:8px;font-size:clamp(13px,2.4vw,16px);line-height:1.35;white-space:nowrap}
+.q-content .reaction-step{display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;flex-direction:column;min-width:56px;gap:0}
+.q-content .reaction-cond{font-size:.73em;line-height:1.35;white-space:nowrap;min-height:1em}
+.q-content .reaction-arrow{font-size:1.5em;line-height:1.2;white-space:nowrap}
+.q-content .reaction-list{display:grid;gap:8px;margin:14px 0;padding:14px;background:rgba(175,127,69,.045);border:1px solid var(--line,#e1d3bd);border-radius:12px;max-width:100%;overflow-x:auto}
+.q-content .reaction-row{width:max-content;min-width:100%;font-size:.95em;white-space:nowrap}
+.q-content sub,.q-content sup{font-size:72%;line-height:0}
+@media(max-width:720px){
+.q-content .chem-structures{grid-template-columns:minmax(0,1fr)}
+.q-content .chem-structure{padding:12px}
+.q-content .chem-struct-lines{font-size:14px}
+.q-content table{font-size:12px}
+.q-content .chem-equation{justify-content:flex-start}
+}
+
+/* Khẩu hiệu trang tài khoản: chủ động xuống 2 dòng, không ép một hàng. */
+.auth-story .story-quote{display:flex;flex-direction:column;align-items:flex-start;gap:5px;white-space:normal;overflow-wrap:normal;line-height:1.55;max-width:100%;}
+.auth-story .story-quote span{display:block;max-width:100%;white-space:normal;}
+
