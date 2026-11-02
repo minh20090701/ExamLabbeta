@@ -20,13 +20,13 @@
 <link rel="stylesheet" href="css/site-polish.css?v=6">
 <link rel="stylesheet" href="css/mobile-layout.css?v=6">
 <link rel="stylesheet" href="css/mobile-controls.css?v=6">
-<link rel="stylesheet" href="css/theme.css?v=6">
+<link rel="stylesheet" href="css/mode-switch-v7.css?v=7">
 </head>
 <body class="admin-page">
  <header class="topbar admin-topbar"><div class="topbar-inner">
    <a class="brand" href="index.html" aria-label="Về thư viện ExamLab"><span class="brand-icon" aria-hidden="true">文</span><span class="brand-words"><b>EXAM<span>LAB</span></b><small>PHÒNG QUẢN ĐỀ · KHOA BẢNG</small></span></a>
    <nav class="admin-header-nav" aria-label="Điều hướng"><a href="index.html">Tủ đề</a><a href="admin.html" data-admin-only hidden aria-current="page">Quản lý đề</a><a href="admin-docs.html" data-admin-only hidden>Duyệt tài liệu</a><a href="documents.html">Thư viện tài liệu</a></nav>
-   <div class="top-actions"><button id="themeToggle" type="button" class="icon-action theme-button" data-examlab-theme-toggle aria-label="Đổi giao diện sáng tối"><svg class="theme-symbol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2m4.93-17.07-1.42 1.42M6.49 17.51l-1.42 1.42M22 12h-2M4 12H2m17.07 7.07-1.42-1.42M6.49 6.49 5.07 5.07"/></svg></button><a class="account-link profile-top-link" id="accountLink" href="login.html" aria-label="Xem hồ sơ và tài khoản"><span class="account-mark" aria-hidden="true">✦</span><span class="account-link-label"><span class="account-pre">Hồ sơ</span><span class="account-word" id="accountLabel">Tài khoản</span></span></a><a href="index.html" class="btn btn-ghost btn-sm header-back">← Về phòng thi</a></div>
+   <div class="top-actions"><button type="button" class="mode-switch-v7" data-mode-v7 onclick="var r=document.documentElement;var t=r.dataset.theme==='dark'?'light':'dark';r.dataset.theme=t;try{localStorage.setItem('examlab.theme',t)}catch(e){};this.setAttribute('aria-pressed',String(t==='dark'));var m=document.querySelector('meta[name=theme-color]');if(m)m.content=t==='dark'?'#201b19':'#542821';" aria-label="Bật hoặc tắt chế độ tối" title="Bấm để đổi chế độ Sáng/Tối"><span class="mode-indicator-v7" aria-hidden="true"></span><span class="mode-label-light-v7" aria-hidden="true">SÁNG</span><span class="mode-label-dark-v7" aria-hidden="true">TỐI</span></button><a class="account-link profile-top-link" id="accountLink" href="login.html" aria-label="Xem hồ sơ và tài khoản"><span class="account-mark" aria-hidden="true">✦</span><span class="account-link-label"><span class="account-pre">Hồ sơ</span><span class="account-word" id="accountLabel">Tài khoản</span></span></a><a href="index.html" class="btn btn-ghost btn-sm header-back">← Về phòng thi</a></div>
  </div></header>
  <section id="adminPermissionScreen" class="admin-permission-status" role="status" aria-live="polite"><h2>Đang xác minh quyền quản trị</h2><p>Đang kiểm tra tài khoản…</p></section>
 <main class="admin-wrap" data-admin-guard hidden>
@@ -58,7 +58,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
  <script src="supabase-config.js"></script>
  <script src="js/supabase-client.js?v=6"></script>
-<script src="js/theme.js?v=6"></script>
+
 <script src="js/admin-auth.js?v=6"></script><script src="js/role-visibility.js?v=6"></script><script src="js/jszip.min.js?v=6"></script><script src="js/admin.js?v=6"></script>
 
 <script src="js/visible-profile-name.js?v=6"></script>

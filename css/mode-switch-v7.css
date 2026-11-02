@@ -1,0 +1,39 @@
+/* ExamLab V7: text status button, no SVG, no icon class, no JS dependency. */
+.mode-switch-v7 {
+  -webkit-appearance:none!important; appearance:none!important;
+  display:inline-flex!important; align-items:center!important; justify-content:center!important;
+  box-sizing:border-box!important; flex:0 0 auto!important;
+  width:82px!important; min-width:82px!important; max-width:82px!important;
+  height:42px!important; min-height:42px!important;
+  padding:0 9px!important; margin:0!important; gap:7px!important;
+  border-radius:12px!important;
+  border:1px solid rgba(226,190,142,.55)!important;
+  background:#3e312a!important; color:#f3ddb4!important;
+  font:800 12px/1 system-ui,-apple-system,"Segoe UI",sans-serif!important;
+  letter-spacing:.035em!important; white-space:nowrap!important;
+  cursor:pointer!important; vertical-align:middle!important;
+  box-shadow:none!important; text-align:center!important;
+  transition:background .18s ease,border-color .18s ease!important;
+}
+.mode-switch-v7:hover { border-color:#edc688!important;background:#544035!important; }
+.mode-switch-v7:focus-visible {outline:3px solid #eebf79!important;outline-offset:2px!important;}
+.mode-switch-v7:active {transform:scale(.97)!important;}
+.mode-switch-v7 .mode-indicator-v7 {
+  display:inline-block!important; flex:0 0 9px!important;
+  width:9px!important;height:9px!important;border-radius:50%!important;
+  background:#f0c977!important;box-shadow:0 0 0 3px rgba(240,201,119,.16)!important;
+}
+.mode-switch-v7 .mode-label-light-v7,
+.mode-switch-v7 .mode-label-dark-v7 {display:inline!important;color:inherit!important;line-height:1!important;font:inherit!important;}
+html[data-theme="light"] .mode-switch-v7 .mode-label-dark-v7,
+html[data-theme="dark"] .mode-switch-v7 .mode-label-light-v7 {display:none!important;}
+html[data-theme="light"] .mode-switch-v7 {background:#705142!important;color:#fff2d9!important;}
+html[data-theme="light"] .mode-switch-v7 .mode-indicator-v7 {background:#ffe29c!important;}
+html[data-theme="dark"] .mode-switch-v7 {background:#2d2825!important;color:#e9d7bb!important;}
+html[data-theme="dark"] .mode-switch-v7 .mode-indicator-v7 {background:#a5a7b7!important;box-shadow:0 0 0 3px rgba(165,167,183,.20)!important;}
+/* In the exam header the color is adapted for the lighter card background. */
+html[data-theme="light"] .exam-mode-switch-v7 {background:#fff2e0!important;color:#754a31!important;border-color:#cba984!important;}
+@media(max-width:480px){
+  .mode-switch-v7 {width:68px!important;min-width:68px!important;max-width:68px!important;height:39px!important;min-height:39px!important;padding:0 6px!important;gap:5px!important;font-size:10px!important;}
+  .mode-switch-v7 .mode-indicator-v7 {flex-basis:7px!important;width:7px!important;height:7px!important;}
+}

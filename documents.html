@@ -1,5 +1,5 @@
 <!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#532620"><meta name="description" content="Thư viện tài liệu học tập - ExamLab Khoa Bảng"><title>Thư viện tài liệu · ExamLab Khoa Bảng</title>
-<script>try{document.documentElement.dataset.theme=localStorage.getItem('examlab.theme')==='dark'?'dark':'light'}catch(e){}</script>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('examlab.theme')==='dark'?'dark':'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
   
  
 
@@ -10,12 +10,12 @@
 <link rel="stylesheet" href="css/site-polish.css?v=6">
 <link rel="stylesheet" href="css/mobile-layout.css?v=6">
 <link rel="stylesheet" href="css/mobile-controls.css?v=6">
-<link rel="stylesheet" href="css/theme.css?v=6">
+<link rel="stylesheet" href="css/mode-switch-v7.css?v=7">
 </head>
 <body class="docs-body"><header class="topbar"><div class="topbar-inner">
 <a href="index.html" class="brand"><span class="brand-icon">文</span><span class="brand-words"><b>EXAM<span>LAB</span></b><small>THƯ VIỆN KHOA BẢNG</small></span></a>
 <nav class="header-nav" aria-label="Điều hướng"><a class="nav-link" href="index.html">Tủ đề ôn tập</a><a class="nav-link is-active" href="documents.html" aria-current="page">Tài liệu</a><a class="nav-link" href="admin.html" data-admin-only hidden>Quản lý đề</a></nav>
-<div class="top-actions"><button id="themeToggle" type="button" class="icon-action theme-button" data-examlab-theme-toggle aria-label="Đổi giao diện sáng tối"><svg class="theme-symbol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2m4.93-17.07-1.42 1.42M6.49 17.51l-1.42 1.42M22 12h-2M4 12H2m17.07 7.07-1.42-1.42M6.49 6.49 5.07 5.07"/></svg></button><a class="account-link profile-top-link" id="accountLink" href="login.html" aria-label="Xem hồ sơ và tài khoản"><span class="account-mark" aria-hidden="true">✦</span><span class="account-link-label"><span class="account-pre">Hồ sơ</span><span class="account-word" id="accountLabel">Tài khoản</span></span></a></div>
+<div class="top-actions"><button type="button" class="mode-switch-v7" data-mode-v7 onclick="var r=document.documentElement;var t=r.dataset.theme==='dark'?'light':'dark';r.dataset.theme=t;try{localStorage.setItem('examlab.theme',t)}catch(e){};this.setAttribute('aria-pressed',String(t==='dark'));var m=document.querySelector('meta[name=theme-color]');if(m)m.content=t==='dark'?'#201b19':'#542821';" aria-label="Bật hoặc tắt chế độ tối" title="Bấm để đổi chế độ Sáng/Tối"><span class="mode-indicator-v7" aria-hidden="true"></span><span class="mode-label-light-v7" aria-hidden="true">SÁNG</span><span class="mode-label-dark-v7" aria-hidden="true">TỐI</span></button><a class="account-link profile-top-link" id="accountLink" href="login.html" aria-label="Xem hồ sơ và tài khoản"><span class="account-mark" aria-hidden="true">✦</span><span class="account-link-label"><span class="account-pre">Hồ sơ</span><span class="account-word" id="accountLabel">Tài khoản</span></span></a></div>
 </div></header>
 <main class="docs-wrap">
 <section class="docs-hero"><div class="docs-hero-content"><div class="docs-eyebrow">❖ TRI THỨC ĐỂ LẠI NGÀN ĐỜI</div><h1>Thư viện <em>khoa bảng</em></h1><p>Cùng góp sách vở, ghi chép và tài liệu học tập. Cất giữ riêng cho mình hoặc gửi tới mọi sĩ tử sau khi được duyệt.</p><div class="docs-hero-tags"><span>✦ Toán</span><span>✦ Vật lý</span><span>✦ Hóa học</span><span>✦ Sinh học</span></div></div><div class="docs-hero-art" aria-hidden="true"><span>書</span><small>TÀNG THƯ CÁC</small></div></section>
@@ -38,7 +38,7 @@
  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
  <script src="supabase-config.js"></script>
  <script src="js/supabase-client.js?v=6"></script>
-<script src="js/theme.js?v=6"></script>
+
 <script src="js/auth-adapter.js?v=6"></script><script src="js/header-account.js?v=6"></script>
  <script src="js/admin-auth.js?v=6"></script>
  <script src="js/role-visibility.js?v=6"></script><script src="js/docs-store.js?v=6"></script><script src="js/documents.js?v=6"></script>
