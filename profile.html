@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#542821">
+<title>Hồ sơ & bảo mật · ExamLab</title>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('examlab.theme')==='dark'?'dark':'light'}catch{document.documentElement.dataset.theme='light'}</script>
+<link rel="stylesheet" href="css/base.css?v=8">
+<link rel="stylesheet" href="css/profile.css?v=8">
+</head>
+<body class="profile-page">
+<header class="profile-top">
+ <a href="index.html" class="brand"><span class="brand-icon">文</span><span class="brand-words"><b>EXAM<span>LAB</span></b><small>TRƯỜNG THI KHOA BẢNG</small></span></a>
+ <div class="profile-top-links"><a href="index.html" class="btn btn-ghost btn-sm">← Trang chủ</a><button id="profileLogout" class="btn btn-ghost btn-sm">Đăng xuất</button></div>
+</header>
+<main class="profile-main">
+ <div class="profile-heading"><div><span class="eyebrow">TÀI KHOẢN KHOA BẢNG</span><h1>Hồ sơ & bảo mật</h1><p>Quản lý thông tin cá nhân và tăng cường an toàn tài khoản.</p></div></div>
+ <p id="profileGlobalMessage" class="profile-message" role="status"></p>
+ <div id="profileGuard" hidden></div>
+ <div id="profileContent" class="profile-layout" hidden>
+  <section class="profile-panel"><h2>Thông tin cá nhân</h2><p>Xin chào, <strong id="profileNamePreview">Sĩ tử</strong>. Những thông tin dưới đây được lưu trong metadata tài khoản Supabase.</p>
+   <form id="profileForm" class="profile-form">
+    <label for="profileName">Tên hiển thị<input id="profileName" name="name" type="text" maxlength="40" minlength="2" required autocomplete="nickname"></label>
+    <label for="profileBirth">Ngày sinh (tùy chọn)<input id="profileBirth" name="birth" type="date" autocomplete="bday"></label>
+    <label for="profileEmail">Email đăng nhập (không thể chỉnh sửa tại đây)<input id="profileEmail" type="email" autocomplete="email" readonly></label>
+    <label for="profilePhone">Số điện thoại liên hệ (tùy chọn)<input id="profilePhone" type="tel" autocomplete="tel" maxlength="20" placeholder="Không bắt buộc"></label>
+    <p class="profile-note">Số điện thoại chỉ để lưu thông tin liên hệ, chưa dùng để xác thực hoặc đăng nhập bằng SMS.</p>
+    <div class="profile-actions"><button id="profileSave" type="submit" class="btn btn-primary">Lưu thông tin</button></div>
+   </form><p id="profileSaveMessage" class="profile-message" role="status"></p>
+  </section>
+  <section class="profile-panel"><h2>Đổi mật khẩu</h2><p>Đặt mật khẩu mới cho tài khoản. Mật khẩu không được lưu vào hồ sơ.</p>
+   <form id="passwordForm" class="profile-form">
+    <label for="profilePassword">Mật khẩu mới<input id="profilePassword" type="password" minlength="8" maxlength="128" autocomplete="new-password" required></label>
+    <label for="profilePasswordRepeat">Nhập lại mật khẩu<input id="profilePasswordRepeat" type="password" minlength="8" maxlength="128" autocomplete="new-password" required></label>
+    <div class="profile-actions"><button id="passwordSave" type="submit" class="btn btn-primary">Cập nhật mật khẩu</button></div>
+   </form><p id="passwordMessage" class="profile-message" role="status"></p>
+   <p class="profile-note">Đối với một số tài khoản, Supabase có thể yêu cầu xác thực lại trước khi đổi mật khẩu.</p>
+  </section>
+  <section class="profile-panel profile-panel-wide"><h2>Authenticator (2FA)</h2><p>Xác minh bằng ứng dụng tạo mã 6 số sau khi đăng nhập bằng email và mật khẩu.</p>
+   <div class="profile-card-status" id="mfaStatus">Đang kiểm tra bảo mật...</div>
+   <div><button id="mfaStart" class="btn btn-primary" type="button" hidden>Bật Authenticator</button></div>
+   <div id="mfaActive" hidden><p>Authenticator đã được bật cho tài khoản này.</p><button type="button" id="mfaDisable" class="btn btn-ghost">Tắt Authenticator</button></div>
+   <div id="mfaEnroll" class="mfa-setup" hidden>
+    <p>Mở ứng dụng Authenticator, quét mã QR, sau đó nhập mã 6 chữ số để kích hoạt.</p>
+    <img id="mfaQr" alt="Mã QR thiết lập Authenticator" class="mfa-qr">
+    <p class="profile-note">Nếu không quét được QR, nhập mã bí mật vào ứng dụng. Không chia sẻ mã này.</p><code id="mfaSecret" class="mfa-secret"></code>
+    <label for="mfaEnrollCode" class="mfa-field">Mã 6 chữ số<input id="mfaEnrollCode" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" placeholder="000000"></label>
+    <div class="profile-actions"><button id="mfaEnable" class="btn btn-primary" type="button">Xác minh & kích hoạt</button><button id="mfaCancel" class="btn btn-ghost" type="button">Hủy thiết lập</button></div>
+   </div><p id="mfaMessage" class="profile-message" role="status"></p>
+  </section>
+  <section class="profile-panel profile-panel-wide"><h2>Lịch sử đăng nhập</h2><p>Hiển thị tối đa 25 lượt đăng nhập đã được web ghi nhận kể từ khi bật V8. Không bao gồm IP; không phải nhật ký bảo mật đầy đủ của Supabase.</p><div id="loginHistory" class="profile-history"><p class="profile-note">Đang tải lịch sử đăng nhập...</p></div></section>
+ </div>
+</main>
+<footer class="footer">EXAMLAB · KHOA BẢNG</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="js/supabase-client.js?v=8"></script>
+<script src="js/profile.js?v=8"></script>
+</body>
+</html>

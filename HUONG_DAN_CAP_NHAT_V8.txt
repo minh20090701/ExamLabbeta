@@ -1,0 +1,37 @@
+EXAMLAB V8 — SỬA NỘP BÀI & BỔ SUNG HỒ SƠ TÀI KHOẢN
+
+I. TRIỂN KHAI
+1. Sao lưu repository GitHub hiện tại ExamLabbeta (Download ZIP).
+2. Giải nén bản ExamLab_V8_Profile_Fix.zip.
+3. Mở thư mục giải nén, tải TOÀN BỘ NỘI DUNG BÊN TRONG lên thư mục gốc repo GitHub, ghi đè file HTML/JS/CSS cũ nếu trùng.
+4. Đảm bảo có profile.html, css/profile.css, js/profile.js, js/mfa-route-guard.js và toàn bộ nội dung hiện có.
+5. Không xóa hoặc thay giá trị trong supabase-config.js (chỉ giữ publishable/anon key, KHÔNG có service_role/secret key).
+6. Sau khi GitHub Pages cập nhật, mở trang bằng Ctrl+Shift+R hoặc tab ẩn danh.
+
+II. THAO TÁC HỒ SƠ
+- Khi đã đăng nhập, bấm Hồ sơ ở thanh trên, hoặc mở profile.html trực tiếp.
+- Tên hiển thị, ngày sinh, số điện thoại liên hệ được lưu trong Supabase Auth user_metadata.
+- Email chỉ đọc, không có chức năng sửa email trong giao diện.
+- Đổi mật khẩu qua Supabase Auth updateUser.
+- Bật 2FA: vào Hồ sơ > Authenticator, quét QR bằng ứng dụng tạo mã TOTP, nhập mã 6 chữ số để xác minh.
+- Lần đăng nhập sau, hệ thống yêu cầu xác minh mã 6 chữ số trước khi chuyển vào giao diện.
+
+III. LỊCH SỬ ĐĂNG NHẬP — CẦN BẬT SQL
+1. Vào Supabase Dashboard, chọn ĐÚNG dự án của ExamLab.
+2. Mở SQL Editor > New query.
+3. Dán toàn bộ file docs/SETUP_PROFILE_V8.sql, bấm Run.
+4. Đăng xuất, đăng nhập lại trên web V8 để hệ thống bắt đầu ghi nhận lịch sử.
+5. Chỉ ghi nhận các lượt đăng nhập mới từ V8. Không lấy lại được lịch sử cũ từ giao diện người dùng.
+6. Bảng có RLS: người dùng chỉ có quyền đọc/ghi sự kiện gắn với user_id của chính mình.
+7. Đây là nhật ký do ứng dụng ghi, KHÔNG phải audit log bất biến của hệ thống. Muốn điều tra bảo mật thực sự, dùng Auth Audit Logs trong Supabase Dashboard.
+
+IV. LƯU Ý BẢO MẬT
+- MFA TOTP dùng Supabase Auth, không lưu mã bí mật hoặc mật khẩu vào localStorage.
+- Điều hướng đến login.html khi thiếu bước TOTP được cài ở các trang HTML, nhưng không thay thế việc áp dụng RLS theo AAL2 cho các dữ liệu thực sự nhạy cảm.
+- Không sao chép file SQL lên máy chủ và kỳ vọng nó tự thực thi: phải chạy trong SQL Editor một lần.
+- Việc bổ sung 2FA có thể yêu cầu cấu hình xác thực bổ sung trong Supabase tùy project và chính sách truy cập.
+
+V. LỖI NỘP BÀI
+- Khi nộp qua bảng Danh sách câu, chương trình đóng bảng đang mở trước khi hiển thị kết quả.
+- Nộp bài vẫn chờ lưu thành công. Nếu mạng lỗi khiến Supabase từ chối lưu, web báo lỗi và giữ bài thi để thử lại; không hiện kết quả giả.
+- Tự nộp khi hết giờ vẫn được giữ nguyên.

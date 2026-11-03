@@ -24,7 +24,7 @@
       const display=String(user?.name || user?.email?.split('@')[0] || 'Đăng nhập').trim();
       account.textContent=display || 'Đăng nhập';
       if(badge)badge.textContent=user ? (display[0]||'H').toLocaleUpperCase('vi-VN') : '✦';
-      if(link)link.title=user ? 'Mở hồ sơ: '+display : 'Đăng nhập hoặc đăng ký';
+      if(link){link.title=user ? 'Mở hồ sơ: '+display : 'Đăng nhập hoặc đăng ký';link.href=user?.kind==='supabase-account'?'profile.html':'login.html';}
     }catch(err){
       if(token!==ticket)return;
       account.textContent='Tài khoản';

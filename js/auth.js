@@ -58,8 +58,20 @@
   }
   async function refresh() {
     const session = await api.getSession();
+    const gate = $('#authMfaGate');
     $('#authPublic').hidden = !!session;
     $('#authLoggedIn').hidden = !session;
+    gate.hidden = true;
+    if (session && session.kind !== 'guest' && window.ExamLabProfile) {
+      try {
+        if (await window.ExamLabProfile.pendingMfa()) {
+          $('#authLoggedIn').hidden = true;
+          gate.hidden = false;
+          window.ExamLabProfile.mfaGate(gate, () => refresh().catch(console.error));
+          return;
+        }
+      } catch (err) { console.warn('MFA status check:', err.message); }
+    }
     const card = document.querySelector('.auth-card');
     card.classList.toggle('is-logged', !!session);
     if (!session) {
@@ -97,6 +109,7 @@
       tile('index.html','▤','Tủ đề ôn tập','Chọn đề và vào phòng thi'),
       tile('documents.html','▥','Thư viện tài liệu','Xem và lưu tài liệu học tập')
     );
+    if (!guest) links.append(tile('profile.html','⚙','Hồ sơ & bảo mật','Thông tin, mật khẩu, Authenticator, lịch sử đăng nhập'));
     wrapper.append(links);
     if (!guest) {
       wrapper.append(node('div','profile-section-heading','Hành trình của bạn'));
@@ -163,7 +176,16 @@
         $('#authForm').reset();
         if(created.needsEmailConfirmation){switchMode('login');showMessage('Đã gửi email xác minh. Mở hộp thư, nhấn liên kết rồi quay lại đăng nhập.');}
         else {await refresh();}
-      } else {await api.signIn(email, password);$('#authForm').reset();await refresh();}
+      } else {
+        await api.signIn(email, password);
+        window.ExamLabProfile?.afterSignIn();
+        $('#authForm').reset();
+        if (window.ExamLabProfile && !(await window.ExamLabProfile.pendingMfa())) {
+          const moved = await window.ExamLabProfile.doneMfa();
+          if (moved) return;
+        }
+        await refresh();
+      }
     } catch (error) {
       showMessage(error?.message || 'Không thể xử lý tài khoản.', true);
     } finally {

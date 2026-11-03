@@ -1,0 +1,36 @@
+/* Trang hồ sơ ExamLab — bộ quy tắc độc lập, không ghi đè CSS phòng thi. */
+.profile-page{background:var(--bg);min-height:100vh;color:var(--ink)}
+.profile-top{display:flex;align-items:center;justify-content:space-between;gap:14px;max-width:1080px;margin:auto;padding:20px 22px}
+.profile-top .brand{text-decoration:none;color:var(--ink)}
+.profile-top-links{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.profile-main{max-width:1080px;padding:16px 22px 64px;margin:auto}
+.profile-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:22px;flex-wrap:wrap}
+.profile-heading h1{margin:2px 0;font-size:clamp(26px,4vw,37px)}
+.profile-heading p{margin:0;color:var(--muted)}
+.profile-layout{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.profile-panel{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:24px;min-width:0;box-shadow:var(--shadow)}
+.profile-panel h2{font-size:20px;margin:0 0 6px;line-height:1.3}
+.profile-panel p{font-size:13px;color:var(--muted);margin:0 0 18px;line-height:1.6}
+.profile-panel-wide{grid-column:1/-1}
+.profile-form{display:grid;gap:13px}
+.profile-form label,.profile-input-label{display:block;font-size:13px;font-weight:750;color:var(--ink)}
+.profile-form input,.profile-form select,.mfa-field input{display:block;width:100%;margin-top:5px;min-height:45px;border:1px solid var(--line);border-radius:11px;padding:10px 12px;background:var(--paper);color:var(--ink);font:inherit}
+.profile-form input:focus,.mfa-field input:focus{outline:2px solid var(--violet);outline-offset:1px}
+.profile-form input[readonly]{opacity:.75;cursor:not-allowed;background:var(--bg)}
+.profile-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:9px}
+.profile-actions .btn{flex:0 1 auto}
+.profile-note{font-size:12px!important;line-height:1.6!important;color:var(--muted)!important;margin-top:10px!important}
+.profile-message{margin:12px 0 0!important;padding:10px 12px;border-radius:10px;background:var(--goodbg);color:var(--good)!important;display:none;font-size:13px}
+.profile-message.show{display:block}.profile-message.error{background:var(--badbg);color:var(--bad)!important}
+.profile-card-status{display:inline-flex;gap:7px;align-items:center;padding:5px 11px;border-radius:999px;background:var(--violetsoft);color:var(--ink);font-weight:700;font-size:12px;margin:6px 0 16px}
+.mfa-setup{padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--bg);margin-top:14px}
+.mfa-qr{width:min(190px,100%);aspect-ratio:1;object-fit:contain;display:block;margin:6px auto 12px;background:white;padding:9px;border-radius:10px}
+.mfa-secret{display:block;font-size:12px;overflow-wrap:anywhere;padding:8px;border-radius:8px;background:var(--paper)}
+.mfa-field{display:block;font-weight:700;font-size:13px}
+.profile-history{display:grid;gap:9px}.profile-history-item{display:flex;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:12px;padding:13px;flex-wrap:wrap}
+.profile-history-item strong{display:block;font-size:14px}.profile-history-item span{font-size:12px;color:var(--muted)}
+.profile-login-mfa{margin-top:14px;padding:18px;border:1px solid var(--line);border-radius:17px;background:var(--paper)}
+.profile-login-mfa h3{margin:0 0 8px}.profile-login-mfa p{font-size:13px;color:var(--muted)}
+.profile-login-mfa input{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;font-size:19px;letter-spacing:.2em;text-align:center;margin-bottom:10px}
+.profile-login-mfa .btn{width:100%}
+@media(max-width:760px){.profile-layout{grid-template-columns:1fr}.profile-panel-wide{grid-column:auto}.profile-top{padding:15px}.profile-top .brand-words small{font-size:9px}.profile-main{padding:12px 14px 46px}.profile-panel{padding:18px}.profile-top-links .btn{padding:9px 11px;font-size:12px}}
