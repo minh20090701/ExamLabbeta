@@ -41,8 +41,35 @@
   $('#mfaStart').addEventListener('click',async()=>{const b=$('#mfaStart');b.disabled=true;try{const r=await requireClient().auth.mfa.enroll({factorType:'totp',friendlyName:'ExamLab Authenticator'});if(r.error)throw r.error;enrollment=r.data;const qr=r.data.totp?.qr_code||'';if(!qr.startsWith('data:image/'))throw Error('Không tải được mã QR bảo mật.');$('#mfaQr').src=qr;$('#mfaSecret').textContent=r.data.totp?.secret||'';$('#mfaEnroll').hidden=false;notify($('#mfaMessage'),'Quét mã QR và nhập mã 6 chữ số để hoàn tất. Không chia sẻ mã bí mật của bạn.')}catch(err){notify($('#mfaMessage'),err.message,true)}finally{b.disabled=false}});
   $('#mfaEnable').addEventListener('click',async()=>{const b=$('#mfaEnable');b.disabled=true;try{if(!enrollment)throw Error('Vui lòng bắt đầu thiết lập Authenticator.');await verify(enrollment.id,$('#mfaEnrollCode').value.trim());enrollment=null;$('#mfaEnroll').hidden=true;$('#mfaEnrollCode').value='';$('#mfaSecret').textContent='';$('#mfaQr').removeAttribute('src');await refreshMfa();notify($('#mfaMessage'),'Đã bật Authenticator. Lần đăng nhập tiếp theo sẽ cần mã xác thực.')}catch(err){notify($('#mfaMessage'),err.message,true)}finally{b.disabled=false}});
   $('#mfaCancel').addEventListener('click',async()=>{if(enrollment){try{await requireClient().auth.mfa.unenroll({factorId:enrollment.id})}catch{}}enrollment=null;$('#mfaEnroll').hidden=true;$('#mfaSecret').textContent='';$('#mfaQr').removeAttribute('src')});
-  $('#mfaDisable').addEventListener('click',async()=>{if(!confirm('Bạn chắc chắn muốn tắt xác thực hai bước?'))return;const b=$('#mfaDisable');b.disabled=true;try{const id=$('#mfaActive').dataset.factorId;const r=await requireClient().auth.mfa.unenroll({factorId:id});if(r.error)throw r.error;await refreshMfa();notify($('#mfaMessage'),'Đã tắt Authenticator.')}catch(err){notify($('#mfaMessage'),'Không thể tắt Authenticator. Hãy xác minh bằng ứng dụng trước. '+err.message,true)}finally{b.disabled=false}});
-  $('#profileLogout').addEventListener('click',async()=>{const {error}=await requireClient().auth.signOut();if(error)alert(error.message);else location.assign('login.html')});
+  $('#mfaDisable').addEventListener('click',async()=>{
+    const b=$('#mfaDisable');if(b.disabled)return;
+    const id=$('#mfaActive').dataset.factorId;
+    if(!id){notify($('#mfaMessage'),'Không tìm thấy phương thức xác thực đang bật.',true);return}
+    const code=await window.ExamLabDialog.code({
+      title:'Xác nhận tắt Authenticator',
+      message:'Để bảo vệ tài khoản, hãy mở ứng dụng Authenticator và nhập mã 6 chữ số hiện tại. Chỉ sau khi xác minh thành công, bảo mật hai bước mới được tắt.',
+      confirmText:'Xác minh & tắt',cancelText:'Giữ bảo mật',danger:true
+    });
+    if(code===null)return;
+    b.disabled=true;
+    try{
+      // Luôn xác minh lại mã TOTP; không chỉ dựa vào phiên AAL2 có sẵn.
+      await verify(id,code);
+      const r=await requireClient().auth.mfa.unenroll({factorId:id});
+      if(r.error)throw r.error;
+      // Sau khi bỏ MFA, làm mới JWT để cập nhật assurance level.
+      try {
+        const session=await requireClient().auth.refreshSession();
+        if(session.error)console.warn('[ExamLab] Đã tắt MFA nhưng làm mới phiên chưa thành công:',session.error.message);
+      } catch(refreshError) {
+        console.warn('[ExamLab] Đã tắt MFA nhưng chưa làm mới phiên:',refreshError.message);
+      }
+      await refreshMfa();
+      notify($('#mfaMessage'),'Đã xác minh và tắt Authenticator thành công.');
+    }catch(err){notify($('#mfaMessage'),'Không thể tắt Authenticator: '+(err?.message||'Mã xác thực không hợp lệ.'),true)}
+    finally{b.disabled=false}
+  });
+  $('#profileLogout').addEventListener('click',async()=>{const {error}=await requireClient().auth.signOut();if(error)await window.ExamLabDialog.alert(error.message,{title:'Không thể đăng xuất'});else location.assign('login.html')});
   populate().catch(err=>notify($('#profileGlobalMessage'),err.message,true));
  }
  window.ExamLabProfile={pendingMfa,mfaGate,recordLogin,afterSignIn(){pendingLogin=true},doneMfa};

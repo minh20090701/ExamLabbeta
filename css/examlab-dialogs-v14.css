@@ -1,0 +1,34 @@
+/* EXAMLAB V14 · Một kiểu thông báo thống nhất, không dùng hộp thoại hệ thống. */
+#examlab-dialog-host{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;padding:20px;isolation:isolate;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+#examlab-dialog-host[hidden]{display:none!important}
+#examlab-dialog-host *{box-sizing:border-box}
+#examlab-dialog-host .exm-backdrop{position:absolute;inset:0;background:rgba(12,8,7,.70);backdrop-filter:blur(5px)}
+#examlab-dialog-host .exm-card{position:relative;z-index:1;width:min(100%,440px);max-height:min(88dvh,700px);overflow:auto;box-shadow:0 28px 80px #0006;border:1px solid #bd976d;border-radius:20px;padding:26px;background:linear-gradient(145deg,#fffbef,#f7e7cd);color:#4b2a22;text-align:left}
+#examlab-dialog-host .exm-symbol{display:grid;place-items:center;width:48px;height:48px;border-radius:15px;border:1px solid #d4b58c;background:#f6e4c5;color:#8b452c;font:700 24px Georgia,serif;margin-bottom:15px}
+#examlab-dialog-host .exm-kicker{font:800 10px/1.4 system-ui,sans-serif;letter-spacing:1.7px;color:#ab6a49;text-transform:uppercase;margin:0 0 8px}
+#examlab-dialog-host .exm-title{font:800 clamp(21px,5vw,27px)/1.28 Georgia,'Times New Roman',serif;color:inherit;margin:0 0 12px}
+#examlab-dialog-host .exm-message{font:500 14px/1.7 system-ui,sans-serif;margin:0;color:#725548;white-space:pre-line;overflow-wrap:anywhere}
+#examlab-dialog-host .exm-field{display:grid;gap:9px;margin:20px 0 0;font-weight:750;font-size:12px;color:inherit}
+#examlab-dialog-host .exm-code{width:100%;min-height:52px;border:1px solid #cba87e;border-radius:12px;background:#fff9ef;color:#432820;letter-spacing:.28em;text-align:center;font:800 24px/1.2 ui-monospace,SFMono-Regular,Consolas,monospace;outline:none;padding:12px}
+#examlab-dialog-host .exm-code:focus{border-color:#9b5136;box-shadow:0 0 0 3px #ad764a36}
+#examlab-dialog-host .exm-error{min-height:19px;margin-top:7px;color:#a5352b;font-size:12px;font-weight:650}
+#examlab-dialog-host .exm-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+#examlab-dialog-host .exm-actions.only-ok{grid-template-columns:1fr}
+#examlab-dialog-host .exm-btn{border-radius:12px;padding:12px 10px;min-height:46px;font:800 14px/1.3 system-ui,sans-serif;cursor:pointer;border:1px solid #cda982;white-space:normal;transition:filter .14s,transform .14s}
+#examlab-dialog-host .exm-btn:hover{filter:brightness(1.06)}
+#examlab-dialog-host .exm-btn:focus-visible{outline:3px solid #dba761;outline-offset:3px}
+#examlab-dialog-host .exm-cancel{background:transparent;color:#654738}
+#examlab-dialog-host .exm-ok{background:linear-gradient(110deg,#9b4632,#753123);border-color:#974732;color:#fff9ef}
+#examlab-dialog-host .exm-ok.exm-danger{background:linear-gradient(110deg,#9e322a,#752420)}
+html[data-theme="dark"] #examlab-dialog-host .exm-card{background:linear-gradient(145deg,#342820,#241c19);color:#ffebd0;border-color:#86644a}
+html[data-theme="dark"] #examlab-dialog-host .exm-symbol{background:#4c372b;color:#f2c58d;border-color:#86644a}
+html[data-theme="dark"] #examlab-dialog-host .exm-kicker{color:#d5a179}
+html[data-theme="dark"] #examlab-dialog-host .exm-message{color:#dfc5ab}
+html[data-theme="dark"] #examlab-dialog-host .exm-code{background:#231b17;color:#ffebd0;border-color:#775a49}
+html[data-theme="dark"] #examlab-dialog-host .exm-cancel{color:#f5dbc2;border-color:#7c6151}
+html[data-theme="dark"] #examlab-dialog-host .exm-error{color:#ffb3a8}
+/* Giữ các toast hiện hữu cùng gam nâu-đỏ của ExamLab. */
+#toastRoot .toast,#adminToast,.docs-toast,.study-toast{border:1px solid #b58b63!important;background:#342720!important;color:#fff2dd!important;box-shadow:0 14px 36px #0005!important;border-radius:13px!important;line-height:1.5}
+#toastRoot .toast.err,#adminToast.error,.docs-toast.is-error{border-color:#d88678!important;background:#7a3028!important}
+@media(max-width:440px){#examlab-dialog-host{padding:13px}#examlab-dialog-host .exm-card{padding:20px;border-radius:17px}#examlab-dialog-host .exm-actions{gap:8px}#examlab-dialog-host .exm-btn{font-size:13px}}
+@media(prefers-reduced-motion:reduce){#examlab-dialog-host .exm-btn{transition:none}}

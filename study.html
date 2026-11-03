@@ -1,48 +1,141 @@
 <!DOCTYPE html>
 
-<html lang="vi"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/><meta content="#542821" name="theme-color"/>
-<meta content="Bấm giờ học và Pomodoro ExamLab Khoa Bảng" name="description"/><title>Bấm giờ học · ExamLab</title>
-<script>try{document.documentElement.dataset.theme=localStorage.getItem('examlab.theme')==='dark'?'dark':'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
-<link href="css/base.css?v=9" rel="stylesheet"/><link href="css/site-polish.css?v=9" rel="stylesheet"/><link href="css/mobile-layout.css?v=9" rel="stylesheet"/><link href="css/mobile-controls.css?v=9" rel="stylesheet"/><link href="css/mode-switch-v7.css?v=7" rel="stylesheet"/><link href="css/study-timer.css?v=10.1" rel="stylesheet"/>
-<link href="css/header-stable-v10.css?v=10.1" rel="stylesheet"/>
-<link rel="stylesheet" href="css/header-full-v13.css?v=13.0"></head><body class="study-page">
-<header class="topbar"><div class="topbar-inner"><a class="brand" href="index.html"><span aria-hidden="true" class="brand-icon">文</span><span class="brand-words"><b>EXAM<span>LAB</span></b><small>TRƯỜNG THI KHOA BẢNG</small></span></a>
-<nav aria-label="Điều hướng" class="header-nav site-nav-v10"><a class="nav-link" href="index.html">Tủ đề ôn tập</a><a class="nav-link" href="index.html?view=history">Sổ khoa cử</a><a class="nav-link" href="documents.html">Thư viện tài liệu</a><a aria-current="page" class="nav-link is-active" href="study.html">Bấm giờ học</a><a class="nav-link" href="index.html?view=guide">Chỉ dẫn</a><a class="nav-link" data-admin-only="" hidden="" href="admin.html">Quản lý đề</a><a class="nav-link" data-admin-only="" hidden="" href="admin-docs.html">Duyệt tài liệu</a></nav>
-<div class="top-actions"><button aria-label="Bật hoặc tắt chế độ tối" class="mode-switch-v7" data-mode-v7="" onclick="var r=document.documentElement;var t=r.dataset.theme==='dark'?'light':'dark';r.dataset.theme=t;try{localStorage.setItem('examlab.theme',t)}catch(e){};this.setAttribute('aria-pressed',String(t==='dark'));var m=document.querySelector('meta[name=theme-color]');if(m)m.content=t==='dark'?'#201b19':'#542821';" title="Bấm để đổi chế độ Sáng/Tối" type="button"><span aria-hidden="true" class="mode-indicator-v7"></span><span aria-hidden="true" class="mode-label-light-v7">SÁNG</span><span aria-hidden="true" class="mode-label-dark-v7">TỐI</span></button><a aria-label="Xem hồ sơ và tài khoản" class="account-link profile-top-link" href="login.html" id="accountLink"><span aria-hidden="true" class="account-mark">✦</span><span class="account-link-label"><span class="account-pre">Hồ sơ</span><span class="account-word" id="accountLabel">Tài khoản</span></span></a></div>
-</div></header>
-<main class="study-wrap"><section class="study-hero"><div><span class="study-eyebrow">✦ GÓC ĐÈN SÁCH · EXAMLAB</span><h1>Học một chút mỗi ngày.<br/><em>Ghi dấu từng phút tiến bộ.</em></h1><p>Bấm giờ học tự do hoặc Pomodoro. Mỗi phiên học sẽ được ghi lại khi bạn lưu hoặc hoàn thành Pomodoro.</p></div><div aria-hidden="true" class="study-hero-mark">⏳</div></section>
-<section aria-labelledby="timerTitle" class="timer-panel" id="studyTimer">
-<div class="timer-heading">
-<div><h2 id="timerTitle">⏱️ Đồng hồ học tập</h2><p>Bấm giờ tự do hoặc học tập trung theo phiên Pomodoro.</p></div>
-<div aria-label="Chế độ đồng hồ" class="timer-tabs" role="group">
-<button aria-pressed="true" class="timer-tab active" data-timer-mode="stopwatch" type="button">⏱ Bấm giờ</button>
-<button aria-pressed="false" class="timer-tab" data-timer-mode="focus" type="button">🍅 Pomodoro</button>
-</div>
-</div>
-<div class="timer-body">
-<div class="timer-clock-wrap"><div class="timer-dial" id="timerDial"><div class="timer-dial-inner"><span class="timer-phase" id="timerPhase">Bấm giờ học</span><strong aria-live="off" class="timer-value" id="timerValue">00:00:00</strong></div></div></div>
-<div class="timer-controls">
-<div class="timer-settings" hidden="" id="timerSettings">
-<label>Phút học<select id="timerFocusMinutes"><option value="15">15 phút</option><option selected="" value="25">25 phút</option><option value="45">45 phút</option><option value="50">50 phút</option></select></label>
-<label>Phút nghỉ<select id="timerBreakMinutes"><option selected="" value="5">5 phút</option><option value="10">10 phút</option><option value="15">15 phút</option></select></label>
-</div>
-<label class="timer-subject">Môn học / tên phiên (tùy chọn)<input id="timerSubject" maxlength="75" placeholder="Ví dụ: Ôn Toán, luyện tiếng Anh..." type="text"/></label>
-<div class="timer-buttons"><button class="btn btn-primary" id="timerStart" type="button">▶ Bắt đầu</button><button class="btn btn-soft" id="timerSave" type="button">💾 Lưu phiên</button><button class="btn btn-soft" id="timerReset" type="button">↺ Đặt lại</button><button class="btn btn-soft" hidden="" id="timerSwitch" type="button">☕ Chuyển sang nghỉ</button></div>
-<div class="timer-total">🌱 Phiên học Pomodoro hoàn thành: <strong id="timerCompleted">0</strong></div>
-<p class="timer-tip" id="timerHelp" role="status">Đồng hồ tiếp tục tính thời gian khi chuyển tab. Lịch sử đã lưu sẽ đồng bộ khi có mạng và đăng nhập.</p>
-</div>
-</div>
-<div class="study-history" id="studyHistoryPanel">
-<div class="history-title"><div><h3>📚 Lịch sử học tập</h3><p>Tự lưu phiên Pomodoro hoàn thành và những phiên bạn lưu.</p></div><button class="subtle-action" id="studyHistoryClear" type="button">Xóa lịch sử</button></div>
-<div aria-label="Thống kê thời gian học" class="history-stats">
-<div class="history-stat"><strong id="historyToday">0 phút</strong><span>Hôm nay</span></div><div class="history-stat"><strong id="historyMonth">0 phút</strong><span>Tháng này</span></div>
-<div class="history-stat"><strong id="historyWeek">0 phút</strong><span>7 ngày qua</span></div>
-<div class="history-stat"><strong id="historyCount">0</strong><span>Phiên đã lưu</span></div>
-</div>
-<div class="history-list" id="studyHistoryList"><p class="history-empty">Chưa có phiên học nào được ghi nhận.</p></div>
-</div>
-</section>
-<div aria-label="Đồng bộ lịch sử học" class="study-sync-bar" role="group"><span aria-live="polite" id="studySyncStatus" role="status">Đang kiểm tra trạng thái đồng bộ…</span><button id="studySyncNow" type="button">⟳ Đồng bộ ngay</button><a hidden="" href="login.html" id="studyLoginLink">Đăng nhập</a></div><div class="study-local-note" role="note">🔐 Lịch sử học được lưu tạm trên thiết bị và đồng bộ qua Supabase khi bạn đăng nhập. Đồng hồ đang chạy chỉ lưu trên thiết bị hiện tại.</div></main><footer class="footer"><b>EXAMLAB · KHOA BẢNG</b> · Thời gian học tập là hành trình của bạn</footer>
-<div aria-live="polite" class="study-toast" id="studyToast" role="status"></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="js/supabase-client.js?v=9"></script><script src="js/mfa-route-guard.js?v=8"></script><script src="js/auth-adapter.js?v=9"></script><script src="js/header-account.js?v=8"></script><script src="js/admin-auth.js?v=9"></script><script src="js/role-visibility.js?v=13.0"></script><script src="js/study-timer.js?v=10.1"></script>
-</body></html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport" />
+    <meta content="#542821" name="theme-color" />
+    <meta content="Bấm giờ học và Pomodoro ExamLab Khoa Bảng" name="description" />
+    <title>Bấm giờ học · ExamLab</title>
+    <script>try {document.documentElement.dataset.theme = localStorage.getItem('examlab.theme') === 'dark' ? 'dark' : 'light'} catch (e) {document.documentElement.dataset.theme = 'light'}</script>
+    <link href="css/base.css?v=9" rel="stylesheet" />
+    <link href="css/site-polish.css?v=9" rel="stylesheet" />
+    <link href="css/mobile-layout.css?v=9" rel="stylesheet" />
+    <link href="css/mobile-controls.css?v=9" rel="stylesheet" />
+    <link href="css/mode-switch-v7.css?v=7" rel="stylesheet" />
+    <link href="css/study-timer.css?v=10.1" rel="stylesheet" />
+    <link href="css/header-stable-v10.css?v=10.1" rel="stylesheet" />
+    <link rel="stylesheet" href="css/header-full-v13.css?v=13.0">
+<link rel="stylesheet" href="css/examlab-dialogs-v14.css?v=14.0">
+</head>
+
+<body class="study-page">
+    <header class="topbar">
+        <div class="topbar-inner"><a class="brand" href="index.html"><span aria-hidden="true"
+                    class="brand-icon">文</span><span class="brand-words"><b>EXAM<span>LAB</span></b><small>TRƯỜNG THI
+                        KHOA BẢNG</small></span></a>
+            <nav aria-label="Điều hướng" class="header-nav site-nav-v10"><a class="nav-link" href="index.html">Tủ đề ôn
+                    tập</a><a class="nav-link" href="index.html?view=history">Sổ khoa cử</a><a class="nav-link"
+                    href="documents.html">Thư viện tài liệu</a><a aria-current="page" class="nav-link is-active"
+                    href="study.html">Bấm giờ học</a><a class="nav-link" href="index.html?view=guide">Chỉ dẫn</a><a
+                    class="nav-link" data-admin-only="" hidden="" href="admin.html">Quản lý đề</a><a class="nav-link"
+                    data-admin-only="" hidden="" href="admin-docs.html">Duyệt tài liệu</a></nav>
+            <div class="top-actions"><button aria-label="Bật hoặc tắt chế độ tối" class="mode-switch-v7" data-mode-v7=""
+                    onclick="var r=document.documentElement;var t=r.dataset.theme==='dark'?'light':'dark';r.dataset.theme=t;try{localStorage.setItem('examlab.theme',t)}catch(e){};this.setAttribute('aria-pressed',String(t==='dark'));var m=document.querySelector('meta[name=theme-color]');if(m)m.content=t==='dark'?'#201b19':'#542821';"
+                    title="Bấm để đổi chế độ Sáng/Tối" type="button"><span aria-hidden="true"
+                        class="mode-indicator-v7"></span><span aria-hidden="true"
+                        class="mode-label-light-v7">SÁNG</span><span aria-hidden="true"
+                        class="mode-label-dark-v7">TỐI</span></button><a aria-label="Xem hồ sơ và tài khoản"
+                    class="account-link profile-top-link" href="login.html" id="accountLink"><span aria-hidden="true"
+                        class="account-mark">✦</span><span class="account-link-label"><span class="account-pre">Hồ
+                            sơ</span><span class="account-word" id="accountLabel">Tài khoản</span></span></a></div>
+        </div>
+    </header>
+    <main class="study-wrap">
+        <section class="study-hero">
+            <div><span class="study-eyebrow">✦ GÓC ĐÈN SÁCH · EXAMLAB</span>
+                <h1>Học một chút mỗi ngày.<br /><em>Ghi dấu từng phút tiến bộ.</em></h1>
+                <p>Bấm giờ học tự do hoặc Pomodoro. Mỗi phiên học sẽ được ghi lại khi bạn lưu hoặc hoàn thành Pomodoro.
+                </p>
+            </div>
+            <div aria-hidden="true" class="study-hero-mark">⏳</div>
+        </section>
+        <section aria-labelledby="timerTitle" class="timer-panel" id="studyTimer">
+            <div class="timer-heading">
+                <div>
+                    <h2 id="timerTitle">⏱️ Đồng hồ học tập</h2>
+                    <p>Bấm giờ tự do hoặc học tập trung theo phiên Pomodoro.</p>
+                </div>
+                <div aria-label="Chế độ đồng hồ" class="timer-tabs" role="group">
+                    <button aria-pressed="true" class="timer-tab active" data-timer-mode="stopwatch" type="button">⏱ Bấm
+                        giờ</button>
+                    <button aria-pressed="false" class="timer-tab" data-timer-mode="focus" type="button">🍅
+                        Pomodoro</button>
+                </div>
+            </div>
+            <div class="timer-body">
+                <div class="timer-clock-wrap">
+                    <div class="timer-dial" id="timerDial">
+                        <div class="timer-dial-inner"><span class="timer-phase" id="timerPhase">Bấm giờ
+                                học</span><strong aria-live="off" class="timer-value" id="timerValue">00:00:00</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="timer-controls">
+                    <div class="timer-settings" hidden="" id="timerSettings">
+                        <label>Phút học<select id="timerFocusMinutes">
+                                <option value="15">15 phút</option>
+                                <option selected="" value="25">25 phút</option>
+                                <option value="45">45 phút</option>
+                                <option value="50">50 phút</option>
+                            </select></label>
+                        <label>Phút nghỉ<select id="timerBreakMinutes">
+                                <option selected="" value="5">5 phút</option>
+                                <option value="10">10 phút</option>
+                                <option value="15">15 phút</option>
+                            </select></label>
+                    </div>
+                    <label class="timer-subject">Môn học / tên phiên (tùy chọn)<input id="timerSubject" maxlength="75"
+                            placeholder="Ví dụ: Ôn Toán, luyện tiếng Anh..." type="text" /></label>
+                    <div class="timer-buttons"><button class="btn btn-primary" id="timerStart" type="button">▶ Bắt
+                            đầu</button><button class="btn btn-soft" id="timerSave" type="button">💾 Lưu
+                            phiên</button><button class="btn btn-soft" id="timerReset" type="button">↺ Đặt
+                            lại</button><button class="btn btn-soft" hidden="" id="timerSwitch" type="button">☕ Chuyển
+                            sang nghỉ</button></div>
+                    <div class="timer-total">🌱 Phiên học Pomodoro hoàn thành: <strong id="timerCompleted">0</strong>
+                    </div>
+                    <p class="timer-tip" id="timerHelp" role="status">Đồng hồ tiếp tục tính thời gian khi chuyển tab.
+                        Lịch sử đã lưu sẽ đồng bộ khi có mạng và đăng nhập.</p>
+                </div>
+            </div>
+            <div class="study-history" id="studyHistoryPanel">
+                <div class="history-title">
+                    <div>
+                        <h3>📚 Lịch sử học tập</h3>
+                        <p>Tự lưu phiên Pomodoro hoàn thành và những phiên bạn lưu.</p>
+                    </div><button class="subtle-action" id="studyHistoryClear" type="button">Xóa lịch sử</button>
+                </div>
+                <div aria-label="Thống kê thời gian học" class="history-stats">
+                    <div class="history-stat"><strong id="historyToday">0 phút</strong><span>Hôm nay</span></div>
+                    <div class="history-stat"><strong id="historyMonth">0 phút</strong><span>Tháng này</span></div>
+                    <div class="history-stat"><strong id="historyWeek">0 phút</strong><span>7 ngày qua</span></div>
+                    <div class="history-stat"><strong id="historyCount">0</strong><span>Phiên đã lưu</span></div>
+                </div>
+                <div class="history-list" id="studyHistoryList">
+                    <p class="history-empty">Chưa có phiên học nào được ghi nhận.</p>
+                </div>
+            </div>
+        </section>
+        <div aria-label="Đồng bộ lịch sử học" class="study-sync-bar" role="group"><span aria-live="polite"
+                id="studySyncStatus" role="status">Đang kiểm tra trạng thái đồng bộ…</span><button id="studySyncNow"
+                type="button">⟳ Đồng bộ ngay</button><a hidden="" href="login.html" id="studyLoginLink">Đăng nhập</a>
+        </div>
+        <div class="study-local-note" role="note">🔐 Lịch sử học được lưu tạm trên thiết bị và đồng bộ khi
+            bạn đăng nhập. Đồng hồ đang chạy chỉ lưu trên thiết bị hiện tại.</div>
+    </main>
+    <footer class="footer"><b>EXAMLAB · KHOA BẢNG</b> · Thời gian học tập là hành trình của bạn</footer>
+    <div aria-live="polite" class="study-toast" id="studyToast" role="status"></div>
+    <script src="js/examlab-dialogs-v14.js?v=14.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="js/supabase-client.js?v=9"></script>
+    <script src="js/mfa-route-guard.js?v=8"></script>
+    <script src="js/auth-adapter.js?v=9"></script>
+    <script src="js/header-account.js?v=8"></script>
+    <script src="js/admin-auth.js?v=9"></script>
+    <script src="js/role-visibility.js?v=13.0"></script>
+    <script src="js/study-timer.js?v=14.0"></script>
+</body>
+
+</html>

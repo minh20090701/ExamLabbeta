@@ -15,7 +15,8 @@
 <link href="css/mobile-controls.css?v=6" rel="stylesheet"/>
 <link href="css/mode-switch-v7.css?v=7" rel="stylesheet"/>
 <link href="css/header-stable-v10.css?v=10.1" rel="stylesheet"/>
-<link rel="stylesheet" href="css/header-full-v13.css?v=13.0"></head>
+<link rel="stylesheet" href="css/header-full-v13.css?v=13.0"><link rel="stylesheet" href="css/examlab-dialogs-v14.css?v=14.0">
+</head>
 <body class="admin-page">
 <header class="topbar admin-topbar"><div class="topbar-inner">
 <a aria-label="Về thư viện ExamLab" class="brand" href="index.html"><span aria-hidden="true" class="brand-icon">文</span><span class="brand-words"><b>EXAM<span>LAB</span></b><small>PHÒNG QUẢN ĐỀ · KHOA BẢNG</small></span></a>
@@ -25,7 +26,7 @@
 <section aria-live="polite" class="admin-permission-status" id="adminPermissionScreen" role="status"><h2>Đang xác minh quyền quản trị</h2><p>Đang kiểm tra tài khoản…</p></section>
 <main class="admin-wrap" data-admin-guard="" hidden="">
 <div class="admin-hero"><div><span class="eyebrow">❖ EXAMLAB · PHÒNG BIÊN SOẠN</span><h1>Quản đề khoa bảng</h1><p>Gom tri thức thành đề thi. Biên soạn, kiểm tra đáp án rồi phát hành vào tủ sách.</p><div class="admin-hero-badges"><span>✦ Toán</span><span>✦ Vật lý</span><span>✦ Hóa học</span><span>✦ Sinh học</span></div></div><div aria-hidden="true" class="admin-hero-mark"><div>QUẢN<br/>ĐỀ</div><small>VĂN HIẾN · KHOA BẢNG</small></div></div>
-<div class="admin-warning" role="note"><strong>Quản lý đề thi trực tuyến.</strong> Bạn cần đăng nhập tài khoản được cấp quyền Admin. Bản nháp lưu ở máy đang soạn; nhấn <b>Xuất bản đề</b> để mọi thành viên thấy đề.</div>
+<div class="admin-warning" role="note"><strong>Quản lý đề thi trực tuyến.</strong> </div>
 <section aria-label="Thống kê thư viện" class="admin-stat-row"><div class="admin-stat"><span aria-hidden="true">▣</span><strong id="statBanks">0</strong><small>Bộ đề</small></div><div class="admin-stat"><span aria-hidden="true">✎</span><strong id="statQuestions">0</strong><small>Tổng câu hỏi</small></div><div class="admin-stat"><span aria-hidden="true">◷</span><strong id="statDuration">0</strong><small>Phút kiểm tra</small></div><div class="admin-stat"><span aria-hidden="true">✦</span><strong id="statSubjects">0</strong><small>Môn có đề</small></div></section>
 <section aria-label="Quản lý đề thi" class="admin-workspace">
 <div class="admin-panel admin-library" id="adminLibrary"><div class="admin-panel-head"><div><span class="eyebrow">TỦ ĐỀ</span><h2>Danh sách bài ôn tập</h2></div><button class="btn btn-primary btn-sm" id="newBank">＋ Tạo đề</button></div>
@@ -49,11 +50,12 @@
 <div hidden="" id="adminImportModal"></div>
 <div aria-live="polite" id="adminToast" role="status"></div>
 <div hidden="" id="adminModal"></div>
+<script src="js/examlab-dialogs-v14.js?v=14.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 <script src="js/supabase-client.js?v=6"></script>
 <script src="js/mfa-route-guard.js?v=8"></script>
-<script src="js/admin-auth.js?v=6"></script><script src="js/role-visibility.js?v=13.0"></script><script src="js/jszip.min.js?v=6"></script><script src="js/admin.js?v=9.1"></script>
+<script src="js/admin-auth.js?v=6"></script><script src="js/role-visibility.js?v=13.0"></script><script src="js/jszip.min.js?v=6"></script><script src="js/admin.js?v=14.0"></script>
 <script src="js/visible-profile-name.js?v=8"></script>
 </body>
 </html>

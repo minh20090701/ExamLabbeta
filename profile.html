@@ -6,6 +6,7 @@
 <script>try{document.documentElement.dataset.theme=localStorage.getItem('examlab.theme')==='dark'?'dark':'light'}catch{document.documentElement.dataset.theme='light'}</script>
 <link rel="stylesheet" href="css/base.css?v=8">
 <link rel="stylesheet" href="css/profile.css?v=11">
+<link rel="stylesheet" href="css/examlab-dialogs-v14.css?v=14.0">
 </head>
 <body class="profile-page">
 <header class="profile-top">
@@ -38,7 +39,7 @@
   <section class="profile-panel profile-panel-wide"><h2>Authenticator (2FA)</h2><p>Xác minh bằng ứng dụng tạo mã 6 số sau khi đăng nhập bằng email và mật khẩu.</p>
    <div class="profile-card-status" id="mfaStatus">Đang kiểm tra bảo mật...</div>
    <div><button id="mfaStart" class="btn btn-primary" type="button" hidden>Bật Authenticator</button></div>
-   <div id="mfaActive" hidden><p>Authenticator đã được bật cho tài khoản này.</p><button type="button" id="mfaDisable" class="btn btn-ghost">Tắt Authenticator</button></div>
+   <div id="mfaActive" hidden><p>Authenticator đang bảo vệ tài khoản này. Khi tắt, bạn phải xác minh lại bằng mã 6 chữ số từ ứng dụng.</p><button type="button" id="mfaDisable" class="btn btn-ghost">Tắt Authenticator</button></div>
    <div id="mfaEnroll" class="mfa-setup" hidden>
     <p>Mở ứng dụng Authenticator, quét mã QR, sau đó nhập mã 6 chữ số để kích hoạt.</p>
     <img id="mfaQr" alt="Mã QR thiết lập Authenticator" class="mfa-qr">
@@ -51,9 +52,10 @@
  </div>
 </main>
 <footer class="footer">EXAMLAB · KHOA BẢNG</footer>
+<script src="js/examlab-dialogs-v14.js?v=14.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 <script src="js/supabase-client.js?v=8"></script>
-<script src="js/profile.js?v=8"></script>
+<script src="js/profile.js?v=14.0"></script>
 </body>
 </html>

@@ -174,9 +174,9 @@
     if(!recordStudySession(false)){toast('Chưa có phiên học cần lưu');return;}
     resetStudySession();persistTimer();renderStudyTimer();toast('✓ Đã lưu phiên học vào lịch sử');
   });
-  $('studyHistoryClear').addEventListener('click',()=>{
+  $('studyHistoryClear').addEventListener('click',async()=>{
     if(!studyHistory.length)return;
-    if(!confirm('Xóa toàn bộ lịch sử học tập trên thiết bị này?'))return;
+    if(!(await window.ExamLabDialog.confirm('Toàn bộ các phiên học đã lưu sẽ bị xóa. Bạn có muốn tiếp tục?',{title:'Xóa lịch sử học tập',confirmText:'Xóa lịch sử',danger:true})))return;
     studyHistory=[];persistStudyHistory();renderStudyHistory();
   });
   readTimer();renderStudyHistory();renderStudyTimer();

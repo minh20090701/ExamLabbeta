@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="css/profile.css?v=8">
 <link rel="stylesheet" href="css/mobile-controls.css?v=6">
 <link rel="stylesheet" href="css/mode-switch-v7.css?v=7">
+<link rel="stylesheet" href="css/examlab-dialogs-v14.css?v=14.0">
 </head>
 <body class="auth-page">
  <header class="auth-top">
@@ -54,9 +55,9 @@
        <input type="text" id="authName" name="displayName" autocomplete="nickname" minlength="2" maxlength="32" placeholder="Ví dụ: Sĩ tử Minh">
       </div>
       <label for="authEmail">Địa chỉ email</label>
-      <input type="email" id="authEmail" name="email" placeholder="ban@example.com" autocomplete="email" required>
+      <input type="email" id="authEmail" name="email" placeholder="" autocomplete="email" required>
       <label for="authPassword">Mật khẩu</label>
-      <input type="password" id="authPassword" name="password" placeholder="Tối thiểu 8 ký tự" autocomplete="current-password" minlength="8" maxlength="128" required>
+      <input type="password" id="authPassword" name="password" placeholder="" autocomplete="current-password" minlength="8" maxlength="128" required>
       <div id="confirmPasswordWrap" hidden>
        <label for="authConfirm">Xác nhận mật khẩu</label>
        <input type="password" id="authConfirm" placeholder="Nhập lại mật khẩu" autocomplete="new-password" minlength="8" maxlength="128">
@@ -76,13 +77,14 @@
   </section>
  </main>
  <footer class="footer"><div class="foot-decor">❖ ── ✦ ── ❖</div><b>EXAMLAB · KHOA BẢNG</b><span>Chăm học mỗi ngày · Vững vàng trường thi</span></footer>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/examlab-dialogs-v14.js?v=14.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
  <script src="supabase-config.js"></script>
  <script src="js/supabase-client.js?v=6"></script>
 
 
  <script src="js/auth-adapter.js?v=6"></script>
- <script src="js/profile.js?v=8"></script>
+ <script src="js/profile.js?v=14.0"></script>
  <script src="js/auth.js?v=8"></script>
 </body>
 </html>

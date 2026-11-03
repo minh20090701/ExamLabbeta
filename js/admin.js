@@ -57,9 +57,9 @@
   $('#bankList').innerHTML=rows.length?rows.map(b=>`<button type="button" class="admin-bank-row ${state.selected===b.id?'selected':''}" data-bank="${esc(b.id)}"><span class="bank-row-icon">${({toan:'∑',ly:'⚛',hoa:'⚗',sinh:'❀'})[b.subject]}</span><span class="bank-row-main"><b>${esc(b.title)}</b><small>${esc(SUBJECTS[b.subject])} · ${b.questions.length} câu · ${b.durationMinutes} phút · ${state.visibility.get(b.id)===false?'🔒 Đã ẩn':state.visibility.get(b.id)===true?'✓ Công khai':'◌ Chưa xuất bản'}</small></span><span class="bank-row-arrow">›</span></button>`).join(''):'<p class="admin-no-data">Chưa có bộ đề phù hợp. Bấm “Tạo đề” hoặc “Tải bộ đề lên” để bắt đầu.</p>';
   $('#publishNote').textContent=`${banks.length} bộ đề (${banks.reduce((n,b)=>n+b.questions.length,0)} câu) sẵn sàng xuất bản. Học sinh chỉ xem đáp án sau khi nộp bài.`;
  }
- function ensureLeave(){return !state.dirty||confirm('Đề đang có thay đổi chưa lưu. Bạn có muốn bỏ các thay đổi này?')}
- function selectBank(id){
-  if(!ensureLeave())return;
+ async function ensureLeave(){return !state.dirty||await window.ExamLabDialog.confirm('Bạn có thay đổi chưa lưu trong bộ đề. Nếu tiếp tục, những thay đổi đó sẽ bị bỏ qua.',{title:'Bỏ thay đổi chưa lưu?',confirmText:'Bỏ thay đổi',danger:true})}
+ async function selectBank(id){
+  if(!(await ensureLeave()))return;
   const bank=state.banks.find(b=>b.id===id);if(!bank)return;
   state.selected=id;state.draft=structuredClone(bank);state.selectedQ=bank.questions.length?0:-1;state.dirty=false;
   renderEditor();refresh();
@@ -100,8 +100,8 @@
   markDirty();
  }
  function changeQuestionType(type){const q=state.draft.questions[state.selectedQ];q.type=type;q.options=type==='short'?undefined:(q.options||{A:'',B:'',C:'',D:''});q.answer=type==='short'?'':type==='multiple'?[]:'';q.aliases=[];markDirty();renderQuestion()}
- function questionTool(action){let i=state.selectedQ;const arr=state.draft.questions;if(i<0)return;
-  if(action==='remove'){if(!confirm(`Xóa câu ${i+1} khỏi đề?`))return;arr.splice(i,1);state.selectedQ=Math.min(i,arr.length-1)}
+ async function questionTool(action){let i=state.selectedQ;const arr=state.draft.questions;if(i<0)return;
+  if(action==='remove'){if(!(await window.ExamLabDialog.confirm(`Câu ${i+1} sẽ bị xóa khỏi bộ đề đang soạn.`,{title:'Xóa câu hỏi',confirmText:'Xóa câu',danger:true})))return;arr.splice(i,1);state.selectedQ=Math.min(i,arr.length-1)}
   if(action==='duplicate'){const clone=structuredClone(arr[i]);clone.id=makeId('cau');arr.splice(i+1,0,clone);state.selectedQ=i+1}
   if(action==='up'&&i>0){[arr[i],arr[i-1]]=[arr[i-1],arr[i]];state.selectedQ=i-1}
   if(action==='down'&&i<arr.length-1){[arr[i],arr[i+1]]=[arr[i+1],arr[i]];state.selectedQ=i+1}
@@ -109,8 +109,8 @@
  }
  function updateBankField(e){const b=state.draft;if(!b)return;const fields={bankTitle:'title',bankSubject:'subject',bankDescription:'description',bankDuration:'durationMinutes'};const key=fields[e.target.id];if(!key)return;b[key]=key==='durationMinutes'?Number(e.target.value):e.target.value;markDirty()}
  async function saveBank(){try{const b=normalize(state.draft);await dbAction('save',b);const i=state.banks.findIndex(v=>v.id===b.id);if(i<0)state.banks.push(b);else state.banks[i]=b;state.draft=structuredClone(b);state.selected=b.id;state.dirty=false;renderEditor();refresh();toast(`Đã lưu “${b.title}” · ${b.questions.length} câu`)}catch(e){toast(e.message,true)}}
- async function newBank(){if(!ensureLeave())return;const b={format:FORMAT,id:makeId('de'),title:'',subject:'hoa',description:'',durationMinutes:60,questions:[]};state.draft=b;state.selected=b.id;state.selectedQ=-1;state.dirty=true;renderEditor();refresh();$('#bankTitle').focus()}
- async function deleteBank(){if(!state.draft)return;const b=state.draft;if(!confirm(`Xóa vĩnh viễn bộ đề “${b.title||'chưa đặt tên'}” trên thiết bị này?`))return;await dbAction('remove',b.id);state.banks=state.banks.filter(x=>x.id!==b.id);state.draft=null;state.selected=null;state.selectedQ=-1;state.dirty=false;renderEditor();refresh();toast('Đã xóa bộ đề trên thiết bị')}
+ async function newBank(){if(!(await ensureLeave()))return;const b={format:FORMAT,id:makeId('de'),title:'',subject:'hoa',description:'',durationMinutes:60,questions:[]};state.draft=b;state.selected=b.id;state.selectedQ=-1;state.dirty=true;renderEditor();refresh();$('#bankTitle').focus()}
+ async function deleteBank(){if(!state.draft)return;const b=state.draft;if(!(await window.ExamLabDialog.confirm(`Bộ đề “${b.title||'chưa đặt tên'}” sẽ bị xóa khỏi bộ nhớ thiết bị.`,{title:'Xóa bộ đề',confirmText:'Xóa bộ đề',danger:true})))return;await dbAction('remove',b.id);state.banks=state.banks.filter(x=>x.id!==b.id);state.draft=null;state.selected=null;state.selectedQ=-1;state.dirty=false;renderEditor();refresh();toast('Đã xóa bộ đề trên thiết bị')}
  function saveFile(text,name,type='application/json;charset=utf-8'){const blob=new Blob([text],{type}),url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000)}
  function exportBank(){try{const b=normalize(state.draft);saveFile(JSON.stringify(b,null,2),`de-${b.subject}-${b.id}.json`);toast('Đã tải bộ đề')}catch(e){toast(e.message,true)}}
  async function readVisibilityStatuses(db){
@@ -142,7 +142,7 @@
   const before=state.visibility.get(bank.id);
   if(before===undefined){toast('Đề chưa được xuất bản lên Supabase.',true);return}
   const next=!before,button=$('#toggleBankVisibility');
-  if(!confirm(`${next?'Hiện':'Ẩn'} đề “${bank.title}” ${next?'cho học sinh?':'khỏi thư viện học sinh?'}\nĐề và kết quả cũ không bị xóa.`))return;
+  if(!(await window.ExamLabDialog.confirm(`${next?'Cho phép học sinh nhìn thấy':'Tạm ẩn với học sinh'} đề “${bank.title}”.\nNội dung đề và kết quả đã có được giữ nguyên.`,{title:next?'Hiện bộ đề':'Ẩn bộ đề',confirmText:next?'Hiện đề':'Ẩn đề'})))return;
   button.disabled=true;
   try{
    const db=window.ExamLabSupabase;if(!db)throw Error('Chưa kết nối Supabase');
@@ -229,7 +229,7 @@
     const selected=check.filter(x=>x.checked&&!x.disabled).map(x=>list[Number(x.dataset.bulkIndex)]);
     if(!selected.length)return;
     const overwrite=selected.filter(x=>x.existing);
-    if(overwrite.length&&!confirm(`Bạn đang ghi đè ${overwrite.length} đề đã lưu trên thiết bị này. Tiếp tục?`))return;
+    if(overwrite.length&&!(await window.ExamLabDialog.confirm(`${overwrite.length} bộ đề đang có trên thiết bị sẽ được thay thế bằng bản nhập mới.`,{title:'Ghi đè bộ đề?',confirmText:'Ghi đè',danger:true})))return;
     importState.busy=true;root.querySelector('#bulkSave').disabled=true;let count=0;const errors=[];
     for(const x of selected){
       try{await dbAction('save',x.bank);const i=state.banks.findIndex(b=>b.id===x.bank.id);if(i===-1)state.banks.push(x.bank);else state.banks[i]=x.bank;count++}

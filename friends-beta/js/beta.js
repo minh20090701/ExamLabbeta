@@ -72,7 +72,7 @@
       ]));
       fillList('friendList',o.friends,'Chưa có bạn bè. Hãy tìm một người bằng Gmail!',row=>personCard(row,'Đã kết bạn',[
         {label:'⚔ Thách đấu',cls:'primary',fn:()=>document.dispatchEvent(new CustomEvent('examlab:beta-duel-invite',{detail:{userId:row.user_id,name:row.name}}))},
-        {label:'Hủy kết bạn',cls:'danger',fn:async()=>{if(confirm('Hủy kết bạn với '+row.name+'?'))await friendAction(row.id,'remove')}}
+        {label:'Hủy kết bạn',cls:'danger',fn:async()=>{if(await window.ExamLabDialog.confirm('Bạn muốn hủy kết bạn với '+row.name+'?',{title:'Hủy kết bạn',confirmText:'Hủy kết bạn',danger:true}))await friendAction(row.id,'remove')}}
       ]));
       const board=$('weeklyBoard');board.replaceChildren();
       (o.leaderboard||[]).forEach((entry,i)=>{

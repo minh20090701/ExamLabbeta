@@ -226,10 +226,10 @@
     await load(true);
     showNote(messages[result]||'Đã cập nhật thách đấu.');
   }
-  document.addEventListener('examlab:beta-duel-invite',event=>{
+  document.addEventListener('examlab:beta-duel-invite',async event=>{
     const friend=event.detail;
     if (!friend?.userId) return;
-    if (!confirm(`Gửi lời thách đấu 10 câu hôm nay tới ${friend.name}?\nKhông tạo thêm lượt thi; sử dụng điểm ngày hôm nay của mỗi người.`)) return;
+    if (!(await window.ExamLabDialog.confirm(`Gửi lời thách đấu 10 câu hôm nay tới ${friend.name}?\nKết quả được tính từ lượt thi hôm nay của hai người.`,{title:'Thách đấu bạn bè',confirmText:'Gửi lời thách đấu'}))) return;
     void action('invite',friend.userId).catch(err=>showNote(errorText(err),true));
   });
   document.addEventListener('examlab:beta-updated',event=>{
