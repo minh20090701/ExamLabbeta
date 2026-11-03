@@ -1,0 +1,146 @@
+/* EXAMLAB V13 - stable active nav, strict role-aware visibility.
+   Chi thay doi thanh dieu huong 5 trang chinh; giu nguyen chuc nang. */
+.topbar .topbar-inner,
+.admin-topbar .topbar-inner {
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  grid-template-rows:auto auto!important;
+  align-items:center!important;
+  column-gap:16px!important;
+  row-gap:11px!important;
+  width:100%!important;
+  max-width:1330px!important;
+  min-height:0!important;
+  padding:12px clamp(14px,2vw,28px) 11px!important;
+  box-sizing:border-box!important;
+}
+.topbar .brand, .admin-topbar .brand {
+  grid-column:1!important;grid-row:1!important;
+  width:max-content!important;max-width:100%!important;
+  min-width:0!important;flex:none!important;
+  text-decoration:none!important;
+}
+.topbar .top-actions, .admin-topbar .top-actions {
+  grid-column:2!important;grid-row:1!important;
+  min-width:0!important;max-width:100%!important;
+  margin:0!important;justify-self:end!important;
+  display:flex!important;align-items:center!important;
+}
+.topbar .site-nav-v10, .admin-topbar .site-nav-v10 {
+  grid-column:1 / -1!important;grid-row:2!important;
+  display:grid!important;
+  grid-template-columns:repeat(auto-fit,minmax(126px,1fr))!important;
+  align-items:stretch!important;
+  gap:7px!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:10px 0 0!important;
+  border-top:1px solid rgba(233,205,165,.22)!important;
+  overflow:visible!important;
+  scrollbar-width:auto!important;
+  scroll-snap-type:none!important;
+  flex-wrap:unset!important;
+}
+.topbar .site-nav-v10 > .nav-link, .admin-topbar .site-nav-v10 > .nav-link,
+.topbar .site-nav-v10 > a.nav-link:link,
+.topbar .site-nav-v10 > a.nav-link:visited {
+  width:100%!important;min-width:0!important;min-height:43px!important;
+  max-width:100%!important;
+  margin:0!important;padding:9px 8px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  font:750 12px/1.35 var(--font-body,system-ui,sans-serif)!important;
+  text-align:center!important;white-space:normal!important;overflow-wrap:normal!important;
+  text-decoration:none!important;text-decoration-line:none!important;
+  border:1px solid rgba(237,207,169,.19)!important;
+  border-radius:10px!important;
+  background:rgba(255,250,243,.045)!important;
+  color:#f0dcc4!important;
+  box-shadow:none!important;
+  flex:initial!important;
+  user-select:none;-webkit-user-select:none;
+  -webkit-tap-highlight-color:transparent;
+  transition:background .15s,border-color .15s!important;
+}
+.topbar .site-nav-v10 > .nav-link.is-active,
+.topbar .site-nav-v10 > .nav-link[aria-current="page"],
+.admin-topbar .site-nav-v10 > .nav-link.is-active,
+.admin-topbar .site-nav-v10 > .nav-link[aria-current="page"] {
+  color:#fff5dc!important;
+  background:rgba(205,150,91,.23)!important;
+  border-color:#cba173!important;
+  box-shadow:inset 0 -2px 0 #dfb87f!important;
+  text-decoration:none!important;
+}
+.topbar .site-nav-v10 > .nav-link:focus-visible {
+  outline:2px solid #efc386!important;
+  outline-offset:2px!important;
+}
+.topbar .site-nav-v10 > .nav-link[hidden],
+.admin-topbar .site-nav-v10 > .nav-link[hidden] {
+  display:none!important;
+}
+/* 5 muc pho thong + 2 muc chi Admin: tu dong dan deu phan con lai */
+@media (min-width:901px) {
+  .topbar .site-nav-v10,.admin-topbar .site-nav-v10 {
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr))!important;
+  }
+}
+@media (max-width:900px) {
+  .topbar .site-nav-v10,.admin-topbar .site-nav-v10 {
+    grid-template-columns:repeat(auto-fit,minmax(135px,1fr))!important;
+  }
+}
+@media (max-width:580px) {
+  .topbar .topbar-inner,.admin-topbar .topbar-inner {
+    column-gap:9px!important;row-gap:9px!important;
+    padding:11px 12px!important;
+  }
+  .topbar .brand .brand-icon{width:38px!important;height:38px!important;flex:0 0 38px!important;}
+  .topbar .brand-words b{font-size:clamp(15px,4.4vw,20px)!important;}
+  .topbar .site-nav-v10,.admin-topbar .site-nav-v10 {
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:6px!important;padding-top:9px!important;
+  }
+  .topbar .site-nav-v10 > .nav-link,.admin-topbar .site-nav-v10 > .nav-link,
+  .topbar .site-nav-v10 > a.nav-link:link,.topbar .site-nav-v10 > a.nav-link:visited {
+    min-height:45px!important;padding:8px 4px!important;
+    font-size:11px!important;line-height:1.25!important;
+  }
+}
+@media (max-width:340px) {
+  .topbar .site-nav-v10,.admin-topbar .site-nav-v10 {
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+
+/* V13 - chi duoc phep hien khi Supabase xac minh Admin (fail-closed).
+   hidden phai thang a.nav-link:link va display:flex!important. */
+html:not([data-examlab-admin="yes"]) .topbar .site-nav-v10 > [data-admin-only],
+html:not([data-examlab-admin="yes"]) .admin-topbar .site-nav-v10 > [data-admin-only],
+html .topbar .site-nav-v10 > a.nav-link[data-admin-only][hidden],
+html .admin-topbar .site-nav-v10 > a.nav-link[data-admin-only][hidden],
+html .topbar .site-nav-v10 > button.nav-link[hidden],
+html .admin-topbar .site-nav-v10 > button.nav-link[hidden] {
+  display:none!important;
+}
+/* Hover KHAC voi active: khong cho hai muc cung sang vang. */
+.topbar .site-nav-v10 > .nav-link:not(.is-active):not([aria-current="page"]):hover,
+.admin-topbar .site-nav-v10 > .nav-link:not(.is-active):not([aria-current="page"]):hover {
+  color:#f0dcc4!important;
+  background:rgba(255,250,243,.07)!important;
+  border-color:rgba(237,207,169,.32)!important;
+  box-shadow:none!important;
+}
+/* Muc dang mo la muc duy nhat co vien vang. */
+.topbar .site-nav-v10 > .nav-link.is-active,
+.topbar .site-nav-v10 > .nav-link[aria-current="page"],
+.admin-topbar .site-nav-v10 > .nav-link.is-active,
+.admin-topbar .site-nav-v10 > .nav-link[aria-current="page"] {
+  background:rgba(205,150,91,.23)!important;
+  border-color:#cba173!important;
+  box-shadow:inset 0 -2px 0 #dfb87f!important;
+  color:#fff5dc!important;
+}

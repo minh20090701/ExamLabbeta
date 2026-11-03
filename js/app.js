@@ -17,7 +17,8 @@ const ram={banks:new Map(),attempts:new Map(),drafts:new Map(),meta:new Map()};
 const openDB=()=>new Promise((resolve,reject)=>{if(!('indexedDB' in window))return reject(new Error('Trình duyệt không hỗ trợ IndexedDB'));let req=indexedDB.open('examlab-db',1);req.onupgradeneeded=()=>{const d=req.result;for(const name of ['banks','attempts','drafts','meta'])if(!d.objectStoreNames.contains(name))d.createObjectStore(name,{keyPath:'id'})};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)});
 function dbCall(store,op,record){if(!hasStorage){if(op==='getAll')return Promise.resolve([...ram[store].values()]);if(op==='get')return Promise.resolve(ram[store].get(record));if(op==='put')ram[store].set(record.id,record);if(op==='delete')ram[store].delete(record);return Promise.resolve()};return new Promise((resolve,reject)=>{const tx=db.transaction(store,'readwrite');const os=tx.objectStore(store);const req=op==='getAll'?os.getAll():op==='get'?os.get(record):op==='put'?os.put(record):os.delete(record);req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)});}
 const getAll=s=>dbCall(s,'getAll'),getOne=(s,id)=>dbCall(s,'get',id),put=(s,value)=>dbCall(s,'put',value),del=(s,id)=>dbCall(s,'delete',id);
-const app={loadingCloud:true,userId:null,banks:[],attempts:[],draft:null,page:'library',subject:'all',search:'',exam:null,examBank:null,result:null,reviewFilter:'all',timerId:null,draftTimer:null,busy:false};
+const initialExamlabPage=(()=>{try{const p=new URLSearchParams(location.search).get('view');return ['history','guide','library'].includes(p)?p:'library'}catch(_){return 'library'}})();
+const app={loadingCloud:true,userId:null,banks:[],attempts:[],draft:null,page:initialExamlabPage,subject:'all',search:'',exam:null,examBank:null,result:null,reviewFilter:'all',timerId:null,draftTimer:null,busy:false};
 const examDraftKey=()=>`active:${app.userId||'guest'}`;
 async function storeAttempt(attempt){
  const db=window.ExamLabSupabase;
@@ -91,7 +92,17 @@ function askToSubmitExam(missing){
  });
 }
 
-function setHeader(){const taking=app.page==='exam';$('#topbar').style.display=taking?'none':'';$('#footer').style.display=taking?'none':'';$$('.nav-link').forEach(x=>x.classList.toggle('is-active',x.dataset.page===app.page));}
+function setHeader(){
+ const taking=app.page==='exam';
+ $('#topbar').style.display=taking?'none':'';
+ $('#footer').style.display=taking?'none':'';
+ // Moi lan doi tab chi duoc mot muc menu duoc chon.
+ $$('.site-nav-v10 > .nav-link').forEach(x=>{
+   const active=!!x.dataset.page && x.dataset.page===app.page;
+   x.classList.toggle('is-active',active);
+   if(active)x.setAttribute('aria-current','page');else x.removeAttribute('aria-current');
+ });
+}
 function setPage(p){if(app.page==='exam'&&p!=='exam'){if(!confirm('Bài thi đang làm sẽ được lưu lại. Bạn có muốn rời phòng thi?'))return;saveDraft();stopTimer()}app.page=p;setHeader();render();window.scrollTo(0,0)}
 function updateStats(){return{exams:app.banks.length,total:app.banks.reduce((a,b)=>a+b.questions.length,0),attempts:app.attempts.length}}
 function render(){const main=$('#view');if(app.page==='library')renderLibrary(main);else if(app.page==='history')renderHistory(main);else if(app.page==='guide')renderGuide(main);else if(app.page==='exam')renderExam(main);else if(app.page==='result')renderResult(main);}
