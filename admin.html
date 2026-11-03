@@ -16,7 +16,7 @@
 
 
 <link rel="stylesheet" href="css/base.css?v=6">
-<link rel="stylesheet" href="css/admin.css?v=6">
+<link rel="stylesheet" href="css/admin.css?v=9.1">
 <link rel="stylesheet" href="css/site-polish.css?v=6">
 <link rel="stylesheet" href="css/mobile-layout.css?v=6">
 <link rel="stylesheet" href="css/mobile-controls.css?v=6">
@@ -25,7 +25,7 @@
 <body class="admin-page">
  <header class="topbar admin-topbar"><div class="topbar-inner">
    <a class="brand" href="index.html" aria-label="Về thư viện ExamLab"><span class="brand-icon" aria-hidden="true">文</span><span class="brand-words"><b>EXAM<span>LAB</span></b><small>PHÒNG QUẢN ĐỀ · KHOA BẢNG</small></span></a>
-   <nav class="admin-header-nav" aria-label="Điều hướng"><a href="index.html">Tủ đề</a><a href="admin.html" data-admin-only hidden aria-current="page">Quản lý đề</a><a href="admin-docs.html" data-admin-only hidden>Duyệt tài liệu</a><a href="documents.html">Thư viện tài liệu</a></nav>
+   <nav class="admin-header-nav" aria-label="Điều hướng"><a href="index.html">Tủ đề</a><a href="admin.html" data-admin-only hidden aria-current="page">Quản lý đề</a><a href="admin-docs.html" data-admin-only hidden>Duyệt tài liệu</a><a href="documents.html">Thư viện tài liệu</a><a href="study.html">⏱ Bấm giờ học</a></nav>
    <div class="top-actions"><button type="button" class="mode-switch-v7" data-mode-v7 onclick="var r=document.documentElement;var t=r.dataset.theme==='dark'?'light':'dark';r.dataset.theme=t;try{localStorage.setItem('examlab.theme',t)}catch(e){};this.setAttribute('aria-pressed',String(t==='dark'));var m=document.querySelector('meta[name=theme-color]');if(m)m.content=t==='dark'?'#201b19':'#542821';" aria-label="Bật hoặc tắt chế độ tối" title="Bấm để đổi chế độ Sáng/Tối"><span class="mode-indicator-v7" aria-hidden="true"></span><span class="mode-label-light-v7" aria-hidden="true">SÁNG</span><span class="mode-label-dark-v7" aria-hidden="true">TỐI</span></button><a class="account-link profile-top-link" id="accountLink" href="login.html" aria-label="Xem hồ sơ và tài khoản"><span class="account-mark" aria-hidden="true">✦</span><span class="account-link-label"><span class="account-pre">Hồ sơ</span><span class="account-word" id="accountLabel">Tài khoản</span></span></a><a href="index.html" class="btn btn-ghost btn-sm header-back">← Về phòng thi</a></div>
  </div></header>
  <section id="adminPermissionScreen" class="admin-permission-status" role="status" aria-live="polite"><h2>Đang xác minh quyền quản trị</h2><p>Đang kiểm tra tài khoản…</p></section>
@@ -41,7 +41,7 @@
       <p class="admin-import-hint" id="cloudSyncStatus" role="status">Đang kiểm tra thư viện đề…</p><p class="admin-import-hint">Chọn tệp hoặc gói đề từ thiết bị. Xem trước và chọn đề cần lưu trước khi phát hành.</p>
     </div>
     <div class="admin-panel admin-editor-shell" id="editorShell"><div class="admin-empty" id="adminEmpty"><span class="admin-empty-icon">✒</span><h2>Chọn một bộ đề để biên soạn</h2><p>Chọn đề từ danh sách bên trái hoặc tạo mới. Có thể thêm từng câu, trắc nghiệm một đáp án, nhiều đáp án và câu trả lời ngắn.</p></div>
-      <div id="editorUI" hidden><div class="admin-panel-head admin-edit-heading"><div><span class="eyebrow">BIÊN SOẠN ĐỀ THI</span><h2 id="editorHeadline">Bộ đề</h2><p id="editStatus">Những thay đổi chưa được lưu</p></div><div class="editor-head-actions"><button id="previewBank" class="btn btn-ghost btn-sm">◉ Xem thử</button><button id="saveBank" class="btn btn-primary btn-sm">✓ Lưu đề</button></div></div>
+      <div id="editorUI" hidden><div class="admin-panel-head admin-edit-heading"><div><span class="eyebrow">BIÊN SOẠN ĐỀ THI</span><h2 id="editorHeadline">Bộ đề</h2><p id="editStatus">Những thay đổi chưa được lưu</p></div><div class="editor-head-actions"><button id="previewBank" class="btn btn-ghost btn-sm">◉ Xem thử</button><button id="toggleBankVisibility" class="btn btn-ghost btn-sm" type="button" disabled>◌ Chưa xuất bản</button><button id="saveBank" class="btn btn-primary btn-sm">✓ Lưu đề</button></div></div>
       <div class="admin-detail-body"><div class="admin-meta-grid"><label>Tên bài ôn tập <b>*</b><input id="bankTitle" type="text" maxlength="150" placeholder="Ví dụ: Kiểm tra Hóa 12 - Este, Lipit" autocomplete="off"></label><label>Môn học <b>*</b><select id="bankSubject"><option value="toan">Toán học</option><option value="ly">Vật lý</option><option value="hoa">Hóa học</option><option value="sinh">Sinh học</option></select></label><label>Thời gian (phút) <b>*</b><input id="bankDuration" type="number" min="1" max="300" value="60"></label><label class="span-full">Giới thiệu / ghi chú<textarea id="bankDescription" rows="2" placeholder="Nội dung và phạm vi kiến thức..."></textarea></label></div>
        <div class="question-section-heading"><div><span class="eyebrow">NGÂN HÀNG CÂU HỎI</span><h3><span id="questionCount">0</span> câu trong đề</h3></div><button id="addQuestion" class="btn btn-ghost btn-sm">＋ Thêm câu</button></div>
        <div class="question-workspace"><div class="question-index"><div id="questionList" class="admin-question-list"></div></div><div class="question-details" id="questionDetails"><div class="admin-empty inner"><span class="admin-empty-icon">✎</span><b>Chọn một câu bên trái</b><p>Nhập nội dung, đáp án và lời giải ở đây.</p></div></div></div>
@@ -49,7 +49,7 @@
       </div></div>
     </div>
    </section>
-   <section class="admin-publish-panel"><div><span class="eyebrow">PHÁT HÀNH BỘ ĐỀ</span><h2>Đưa đề lên web học sinh</h2><p>Bản nháp được lưu trên thiết bị đang soạn. Chọn Xuất bản đề để học sinh có thể làm bài.</p><p class="admin-small" id="publishNote">Đáp án chỉ được hiển thị sau khi học sinh nộp bài. Vì đề nằm ở trình duyệt, đây là hệ thống tự ôn luyện, chưa có chống gian lận.</p></div><button id="publishBtn" class="btn btn-primary">⇩ Xuất bản đề</button></section>
+   <section class="admin-publish-panel"><div><span class="eyebrow">PHÁT HÀNH BỘ ĐỀ</span><h2>Đưa đề lên web học sinh</h2><p>Bản nháp được lưu trên thiết bị đang soạn. Đề đã công khai có thể ẩn/hiện ngay trong phần biên soạn; xuất bản hàng loạt không tự hiện lại đề đã ẩn.</p><p class="admin-small" id="publishNote">Đáp án chỉ được hiển thị sau khi học sinh nộp bài. Vì đề nằm ở trình duyệt, đây là hệ thống tự ôn luyện, chưa có chống gian lận.</p></div><button id="publishBtn" class="btn btn-primary">⇩ Xuất bản đề</button></section>
  </main>
  <input id="adminFileInput" type="file" accept=".json,application/json,.zip,application/zip,application/x-zip-compressed" multiple hidden>
  <div id="adminImportModal" hidden></div>
@@ -60,7 +60,7 @@
  <script src="js/supabase-client.js?v=6"></script>
 <script src="js/mfa-route-guard.js?v=8"></script>
 
-<script src="js/admin-auth.js?v=6"></script><script src="js/role-visibility.js?v=6"></script><script src="js/jszip.min.js?v=6"></script><script src="js/admin.js?v=6"></script>
+<script src="js/admin-auth.js?v=6"></script><script src="js/role-visibility.js?v=6"></script><script src="js/jszip.min.js?v=6"></script><script src="js/admin.js?v=9.1"></script>
 
 <script src="js/visible-profile-name.js?v=8"></script>
 </body>

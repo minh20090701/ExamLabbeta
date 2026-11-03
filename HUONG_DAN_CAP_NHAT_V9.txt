@@ -1,0 +1,40 @@
+EXAMLAB V9 — AN/HIEN DE ADMIN + BAM GIO HOC TU TIMELINE V9
+======================================================
+
+A. SAO LUU
+1) Luu ZIP repository GitHub dang chay de co the quay lai.
+2) Khong xoa database Supabase va khong tao Supabase moi.
+
+B. SUPABASE — BAT BUOC CHAY TRUOC KHI UP WEB
+1) Mo Supabase Dashboard > du an ExamLab dang su dung > SQL Editor.
+2) Mo docs/SETUP_VISIBILITY_V9.sql, sao chep va chay toan bo mot lan.
+3) Script tao 3 ham: doc ID de an cho hoc sinh, doc trang thai de cho Admin, thay doi trang thai an/hien da kiem tra quyen Admin.
+4) Khong chay lai SUPABASE_SETUP.sql cu tren du an dang su dung neu khong can thiet.
+
+C. GITHUB PAGES
+1) Giai nen file ZIP, upload TOAN BO NOI DUNG vao thu muc goc repository ExamLabbeta (co index.html ngay thu muc goc).
+2) Ghi de cac HTML/CSS/JS trung ten, giu cac file Supabase va de thi.
+3) Commit changes va mo lai website (thu tab an danh neu Chrome cache file cu).
+4) Trang moi: https://minh20090701.github.io/ExamLabbeta/study.html
+
+D. AN/HIEN DE
+1) Dang nhap Admin > Quan ly de.
+2) Chon mot de da xuat ban trong danh sach.
+3) Ben nut Xem thu va Luu de co nut An de / Hien de.
+4) An de KHONG xoa cau hoi hay ket qua hoc sinh; khong tu bat hien de khi bam Xuat ban hang loat.
+5) De an khong duoc tra noi dung cho nguoi dung qua RLS hien tai khi published=false. Cac ban sao da tai xuong truoc do khong the thu hoi khoi thiet bi cua nguoi dung. Khi mat mang, ban cache co the chua cap nhat.
+
+E. BAM GIO HOC
+1) Menu "Bam gio hoc" nam ngay canh "Thu vien tai lieu". Trang study.html doc lap.
+2) Co bam gio tu do + Pomodoro, bat dau/tam dung/tiep tuc, 15/25/45/50 phut hoc va 5/10/15 phut nghi.
+3) Chon ten phien hoc, Luu phien / Dat lai, lich su, thong ke hom nay/7 ngay va xoa lich su.
+4) Lich su chi luu trong localStorage tren trinh duyet theo ID tai khoan (hoac guest); khong dong bo giua cac thiet bi, khong phai ket qua Supabase.
+5) Chuyen tab van tinh thoi gian dung theo dong ho thuc. Thong bao am thanh khong duoc dam bao khi trinh duyet hoan toan dong.
+
+F. KIEM TRA SAU CAP NHAT
+- Trang chu hien du 7 bo de neu Supabase da phat hanh chung.
+- Admin an mot de thi de do bien mat khoi trang hoc sinh sau khi tai lai; hien lai de kiem tra phuc hoi.
+- Bam gio 2 giay > Tam dung > Luu phien > tai lai trang > thay lich su.
+- Kiem tra cac trang login, profile, thu vien tai lieu, nop bai.
+
+Luu y: Chua chay SQL tren Supabase that va chua test truc tiep website GitHub cua ban; da test bấm giờ bằng trinh duyet mo phong HTML tren man hinh 360px va 1280px, khong loi JS va khong tran ngang.

@@ -68,3 +68,9 @@ html[data-theme="dark"] .admin-hero-mark div{color:#e0ab80;border-color:#c48c64;
 .bulk-foot>span{font-size:12px;color:var(--muted)}.bulk-foot>div{display:flex;flex-wrap:wrap;gap:8px}
 @media(max-width:500px){.bulk-dialog{padding:15px}.bulk-foot,.bulk-foot>div{width:100%}.bulk-foot>div .btn{flex:1}.bulk-list{max-height:43vh}}
 
+
+/* V9: rõ trạng thái công khai và tránh nút ẩn bị co trên mobile */
+#toggleBankVisibility{white-space:nowrap;min-width:118px}
+#toggleBankVisibility:disabled{opacity:.68}
+.admin-bank-row small{line-height:1.5}
+@media(max-width:650px){.editor-head-actions{flex-wrap:wrap;gap:7px}#toggleBankVisibility{min-width:0}}

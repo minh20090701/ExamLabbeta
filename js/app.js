@@ -31,8 +31,13 @@ async function fetchAttempts(){
 }
 async function fetchPublishedBanks(){
  const remote=window.ExamLabSupabase;if(!remote)return {loaded:0,unavailable:true};
+ // Chỉ truyền ID, không tiết lộ nội dung đề ẩn cho người học.
+ const {data:hiddenRows,error:hiddenError}=await remote.rpc('examlab_hidden_deck_ids');
+ if(hiddenError)throw Error('Cần chạy docs/SETUP_VISIBILITY_V9.sql trên Supabase: '+hiddenError.message);
+ const hiddenIds=new Set((hiddenRows||[]).map(r=>String(r.deck_id)));
  const {data,error}=await remote.from('examlab_decks').select('payload').eq('published',true).order('updated_at',{ascending:false}).limit(500);
  if(error)throw error;
+ app.banks=app.banks.filter(b=>!hiddenIds.has(String(b.id)));
  let loaded=0,invalid=0,persistFailures=0;
  for(const row of data||[]){
   try{
@@ -155,6 +160,8 @@ async function init(){
  }
  // Vẽ thư viện từ bản lưu cục bộ trước, không bắt người dùng chạm lần hai để hiển thị.
  try{app.banks=await getAll('banks')}catch(e){app.banks=[];console.warn(e)}
+ const cachedBanks=app.banks.slice();
+ app.banks=[]; // Không hiển thị đề cũ trước khi kiểm tra danh sách đề ẩn trên Supabase.
  try{app.attempts=await getAll('attempts')}catch(e){app.attempts=[]}
  app.loadingCloud=true;
  setHeader();render();
@@ -164,10 +171,11 @@ async function init(){
   app.userId=session?.kind==='supabase-account'?session.id:null;
  }catch(e){console.warn('Không đọc được phiên đăng nhập',e)}
  try{
+  app.banks=cachedBanks.slice();
   const result=await fetchPublishedBanks();
   if(result.invalid)toast(`${result.invalid} đề trên máy chủ có định dạng lỗi; các đề khác vẫn giữ nguyên.`,true);
   if(result.persistFailures)console.warn('Một số đề không thể lưu offline do bộ nhớ trình duyệt không đủ');
- }catch(e){console.warn('Tải đề Supabase thất bại; giữ bản cục bộ',e);toast('Không đồng bộ được đề Supabase. Đề đã lưu trong máy vẫn được giữ.',true)}
+ }catch(e){app.banks=cachedBanks;console.warn('Tải đề Supabase thất bại; giữ bản cục bộ',e);toast('Không kiểm tra được đề ẩn trên Supabase; đang dùng bản lưu offline, có thể chưa cập nhật.',true)}
  finally{app.loadingCloud=false;app.banks.sort((a,b)=>a.title.localeCompare(b.title,'vi'));if(app.page==='library')render()}
  try{const attempts=await fetchAttempts();app.attempts=attempts; if(app.page==='history')render()}
  catch(e){console.warn('Lấy lịch sử Supabase thất bại; giữ bản cục bộ',e);toast('Chưa tải được lịch sử trên máy chủ.',true)}
