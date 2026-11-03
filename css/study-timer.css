@@ -63,3 +63,17 @@ html[data-theme="dark"] .study-page{--accent:#e0a275;--accent-2:#c98b61}
     .history-delete {border:0;background:transparent;color:var(--muted);font-size:20px;padding:5px 7px}
     .history-empty{color:var(--muted);font-size:12px;line-height:1.7;margin:10px 0}
     .subtle-action {font-size:11px;font-weight:800;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:10px;padding:9px 11px}
+
+/* V15 · Đồng bộ lịch sử học (không áp dụng cho bộ đếm đang chạy) */
+.study-page .history-stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+.study-sync-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;max-width:1120px;margin:12px auto 0;padding:11px 15px;border:1px solid var(--line);border-radius:13px;background:var(--paper);color:var(--ink)}
+.study-sync-bar #studySyncStatus{flex:1 1 260px;font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+.study-sync-bar #studySyncStatus[data-state="success"]{color:var(--good,#16835a)}
+.study-sync-bar #studySyncStatus[data-state="error"]{color:var(--bad,#bb4b3c)}
+.study-sync-bar #studySyncStatus[data-state="pending"],
+.study-sync-bar #studySyncStatus[data-state="offline"]{color:var(--muted)}
+.study-sync-bar button,.study-sync-bar a{white-space:nowrap;padding:10px 13px;border-radius:10px;background:var(--soft);color:var(--ink);border:1px solid var(--line);font-size:12px;font-weight:700;line-height:1.4;cursor:pointer;text-decoration:none}
+.study-sync-bar button:disabled{opacity:.55;cursor:wait}
+.study-sync-bar [hidden]{display:none!important}
+.study-local-note{max-width:1120px;margin:16px auto 0}
+@media(max-width:680px){.study-page .history-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.study-sync-bar{margin:12px 0 0;padding:12px}.study-sync-bar #studySyncStatus{flex-basis:100%}}
