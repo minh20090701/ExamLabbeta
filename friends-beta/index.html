@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#211b19">
+  <meta name="description" content="ExamLab Friends Beta: kết bạn bằng email, gửi lời mời, thử thách hằng ngày và bảng xếp hạng bạn bè.">
+  <title>Hội bạn đồng môn · ExamLab Beta</title>
+  <link rel="stylesheet" href="css/beta.css?v=1">
+</head>
+<body>
+  <header class="bar">
+    <div class="shell bar-inner">
+      <a class="brand" href="../index.html" aria-label="Quay lại ExamLab">
+        <span class="brand-seal" aria-hidden="true">文</span>
+        <span><strong>EXAMLAB</strong><small>HỘI BẠN ĐỒNG MÔN</small></span>
+      </a>
+      <div class="bar-right"><span class="beta-pill">BETA · ĐỘC LẬP</span><a class="back-link" href="../index.html">↗ Về ExamLab</a></div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-copy"><div class="eyebrow">PHÒNG GIAO LƯU • THI ĐUA HỌC TẬP</div>
+      <h1>Học cùng bằng hữu.<br><em>Thi đua mỗi ngày.</em></h1>
+      <p>Kết nối bằng Gmail, gửi lời mời kết bạn và cùng chinh phục 10 câu hỏi mới mỗi ngày. Điểm thi đua Beta được lưu riêng, không tác động điểm bài thi ExamLab chính.</p>
+      <div class="hero-tags"><span>✧ Lời mời kết bạn</span><span>◇ 10 câu / 10 phút</span><span>♛ Đua top theo tuần</span></div></div>
+      <div class="hero-art" aria-hidden="true"><div class="ring ring-one"></div><div class="ring ring-two"></div><div class="art-star">✦</div><div class="art-text">友</div><div class="art-caption">KẾT GIAO • CẦU TIẾN</div></div>
+    </section>
+
+    <div id="notice" class="notice" role="status" aria-live="polite">Đang kiểm tra tài khoản ExamLab…</div>
+
+    <section id="loginGate" class="panel auth-panel" hidden>
+      <div class="round-icon">⌁</div>
+      <h2>Cần đăng nhập để vào Hội bạn</h2>
+      <p>Beta sử dụng tài khoản Supabase đang có của ExamLab. Không cần đăng ký tài khoản mới. Chế độ khách không tham gia bảng xếp hạng.</p>
+      <a class="btn primary" href="../login.html">Đăng nhập ExamLab</a>
+    </section>
+
+    <div id="app" hidden>
+      <section id="joinCard" class="panel joined-setup" hidden>
+        <div class="section-head"><div><small class="eyebrow">BƯỚC ĐẦU</small><h2>Tham gia Hội bạn Beta</h2></div></div>
+        <p>Chọn tên sẽ hiển thị với bạn bè. Bạn có thể bật cho phép tìm qua Gmail, hoặc để tắt nếu muốn riêng tư.</p>
+      </section>
+      <section class="panel my-panel">
+        <div class="section-head"><div><small class="eyebrow">DANH TÍNH HỘI VIÊN</small><h2>Hồ sơ Beta</h2></div><span id="emailMe" class="me-email" aria-label="Email tài khoản"></span></div>
+        <form id="profileForm" class="profile-form">
+          <label>Tên trong bảng thi đua<input id="displayName" maxlength="40" minlength="2" required placeholder="Tên hiển thị"></label>
+          <label class="check-row"><input type="checkbox" id="discoverable"> <span><strong>Cho phép người khác tìm mình bằng Gmail</strong><small>Mặc định tắt. Chỉ hiện tên và trạng thái kết bạn, không công khai địa chỉ email.</small></span></label>
+          <button class="btn primary" type="submit" id="saveProfile">Lưu hồ sơ Beta</button>
+        </form>
+      </section>
+
+      <div id="participationArea" hidden>
+        <div class="overview-stats" id="statStrip" aria-label="Thống kê hội bạn">
+          <div class="mini-stat"><span>BẰNG HỮU</span><strong id="friendCount">0</strong></div>
+          <div class="mini-stat"><span>LỜI MỜI MỚI</span><strong id="requestCount">0</strong></div>
+          <div class="mini-stat"><span>ĐIỂM TUẦN NÀY</span><strong id="myPoints">0</strong></div>
+        </div>
+
+        <div class="cols">
+          <div class="stack">
+            <section class="panel">
+              <div class="section-head"><div><small class="eyebrow">TÌM NGƯỜI ĐỒNG HÀNH</small><h2>Tìm bạn bằng Gmail</h2></div><span class="section-icon" aria-hidden="true">✉</span></div>
+              <p class="muted">Nhập chính xác Gmail của người đã tham gia Beta và bật quyền được tìm kiếm. Không hỗ trợ liệt kê tài khoản.</p>
+              <form id="findForm" class="search-row"><input id="findEmail" type="email" autocomplete="off" maxlength="254" inputmode="email" required placeholder="banbe@gmail.com" aria-label="Gmail người muốn tìm"><button id="findBtn" class="btn primary" type="submit">Tìm</button></form>
+              <div id="findResult" class="search-result" aria-live="polite"></div>
+            </section>
+            <section class="panel">
+              <div class="section-head"><div><small class="eyebrow">HỘP THƯ BẰNG HỮU</small><h2>Lời mời kết bạn</h2></div><span class="section-icon" aria-hidden="true">✦</span></div>
+              <h3 class="subhead">Đang chờ bạn xác nhận</h3><div id="incoming" class="list-stack"></div>
+              <h3 class="subhead">Bạn đã gửi</h3><div id="outgoing" class="list-stack"></div>
+            </section>
+            <section class="panel">
+              <div class="section-head"><div><small class="eyebrow">DANH SÁCH THÂN HỮU</small><h2>Bạn bè</h2></div><span class="section-icon" aria-hidden="true">♧</span></div>
+              <div id="friendList" class="list-stack"></div>
+            </section>
+          </div>
+          <div class="stack">
+            <section class="panel challenge">
+              <div class="challenge-top"><span class="eyebrow">THI ĐUA HÔM NAY</span><span class="challenge-mark" aria-hidden="true">♛</span></div>
+              <h2>Thử thách mỗi ngày</h2>
+              <div class="challenge-big">10 <small>câu hỏi</small><span class="line-mark">/</span> 10 <small>phút</small></div>
+              <p>Chỉ <strong>một lượt mỗi ngày</strong> theo giờ Việt Nam. Mỗi câu đúng được 100 điểm; hệ thống Supabase chấm điểm.</p>
+              <button id="startDaily" class="btn accent" type="button">Bắt đầu thi đua</button>
+              <div id="dailyNote" class="muted small">Điểm thi đua không cộng vào bài làm ExamLab chính.</div>
+            </section>
+            <section class="panel">
+              <div class="section-head"><div><small class="eyebrow">VINH DANH BẰNG HỮU</small><h2>Bảng thi đua tuần</h2></div><span class="section-icon" aria-hidden="true">♛</span></div>
+              <p class="muted">Xếp hạng chỉ gồm bạn và những người đã kết bạn. Hòa điểm thì ưu tiên tổng thời gian làm bài ít hơn.</p>
+              <div id="weeklyBoard" class="leaderboard"></div>
+              <button id="refreshBtn" type="button" class="btn subtle full">↻ Cập nhật bảng xếp hạng</button>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section id="quizLayer" class="quiz-layer" role="dialog" aria-modal="true" aria-labelledby="quizTitle" hidden>
+    <div class="quiz-box">
+      <div class="quiz-heading"><div><small class="eyebrow">EXAMLAB • BETA CHALLENGE</small><h2 id="quizTitle">Thử thách hôm nay</h2></div><div class="quiz-timer" id="quizTimer" aria-live="off">10:00</div></div>
+      <p class="quiz-help">Một lượt/ngày • 10 câu • Tính điểm trên máy chủ. Thoát giữa chừng không đặt lại đồng hồ.</p>
+      <form id="quizForm"><div id="quizQuestions" class="quiz-questions"></div><div class="quiz-actions"><span id="quizAnswered">0/10 đã chọn</span><button id="submitDaily" class="btn primary" type="submit">Nộp bài & xem điểm</button></div></form>
+    </div>
+  </section>
+  <footer class="footer">EXAMLAB • HỘI BẠN ĐỒNG MÔN (BETA) · Hệ thống thử nghiệm độc lập</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../supabase-config.js"></script>
+  <script src="../js/supabase-client.js"></script>
+  <script src="js/beta.js?v=1"></script>
+</body>
+</html>
