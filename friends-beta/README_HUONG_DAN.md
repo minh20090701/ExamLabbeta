@@ -1,51 +1,56 @@
-# ExamLab – Hội bạn & Thi đua (BETA độc lập)
+# EXAMLAB FRIENDS & THI ĐUA — BETA V2
 
-## Nội dung
+Phiên bản này **độc lập với ExamLab chính**. Không sửa `index.html`, `admin.html`, dữ liệu đề chính hoặc giao diện của các trang khác.
 
-- `index.html`: giao diện Hội bạn Beta.
-- `css/beta.css`: giao diện riêng.
-- `js/beta.js`: tìm bạn, kết bạn, bảng xếp hạng, làm thử thách.
-- `sql/SETUP_BETA.sql`: tạo **5 bảng và 7 hàm RPC riêng** trên Supabase hiện tại. Cài **một lần**.
+## Các tính năng
 
-## Triển khai vào repository ExamLab hiện tại
+1. **Kết bạn bằng Gmail** (V1): Tìm chính xác email đã tham gia Beta và tự bật quyền tìm kiếm. Gửi, nhận, chấp nhận, từ chối hoặc hủy lời mời, hủy kết bạn.
+2. **Thi đua 10 câu/ngày** (V1): 10 phút, 100 điểm/câu đúng; máy chủ Supabase chấm điểm và chỉ cho một lượt/ngày.
+3. **Thách đấu 1–1 (mới)**: Bấm **⚔ Thách đấu** ở danh sách bạn bè. Người nhận có thể chấp nhận hoặc từ chối. Hai người **dùng điểm thi đua hằng ngày đã có**, nên không phát sinh lượt thi mới. Người điểm cao hơn thắng; nếu bằng điểm, thời gian ngắn hơn thắng; bằng cả hai là hòa.
+4. **Giới hạn chống làm phiền (mới)**: Chỉ thách đấu với bạn bè đã kết nối; tối đa 3 lời thách đấu gửi mỗi tài khoản/ngày, một lời mời đang hiệu lực cho cùng cặp trong ngày. Lời thách đấu chưa được chấp nhận sẽ hết hạn sau ngày hôm đó (theo giờ Việt Nam).
+5. **Bảng xếp hạng tuần + tháng (mới)**: Chỉ gồm bạn và bạn bè đã kết nối.
+6. **Thành tích (mới)**: Tổng điểm, chuỗi ngày thi, số ngày dự thi, tỉ lệ trả lời đúng, điểm cao nhất, điểm tháng, 5 huy hiệu đạt được theo điều kiện thực tế, lịch sử 14 bài gần nhất.
+7. **Thông báo trong trang (mới)**: Số lời thách đấu đang chờ và số lời mời kết bạn. Chỉ cập nhật khi vào trang, chuyển lại tab hoặc bấm cập nhật; không gửi email, SMS hay push.
 
-1. Sao lưu repository trước khi sửa.
-2. Giải nén file ZIP.
-3. Upload **cả thư mục `friends-beta`** vào thư mục gốc repository, không trộn các file trong thư mục này với file web chính.
-4. Trong Supabase Dashboard → **SQL Editor** → **New query**, mở `friends-beta/sql/SETUP_BETA.sql`, sao chép toàn bộ SQL, chạy một lần. Đọc SQL trước khi thực thi.
-5. Đảm bảo repository chính có `supabase-config.js` và `js/supabase-client.js` đúng như ExamLab V8. Không sửa hai file này; Beta tham chiếu chúng qua `../`.
-6. Chờ GitHub Pages triển khai, sau đó mở:
+## Cài đặt vào repository ExamLabbeta
 
-   `https://minh20090701.github.io/ExamLabbeta/friends-beta/`
+1. Sao lưu thư mục `friends-beta` cũ nếu đã chỉnh sửa riêng.
+2. Giải nén ZIP. Upload **toàn bộ thư mục `friends-beta/`** vào **thư mục gốc** repo GitHub hiện tại `ExamLabbeta`.
+3. Mở Supabase Dashboard → dự án **cũ** của ExamLab → **SQL Editor**.
+4. Nếu đã chạy `sql/SETUP_BETA.sql` từ V1, **chỉ chạy** `sql/UPGRADE_BETA_V2.sql`.
+   - Nếu chưa từng cài Beta V1, hãy chạy `sql/SETUP_BETA.sql` **trước**, rồi mới chạy `sql/UPGRADE_BETA_V2.sql`.
+   - Có thể chạy lại tệp nâng cấp V2; tệp dùng `IF NOT EXISTS` và `CREATE OR REPLACE`.
+5. Mở `https://minh20090701.github.io/ExamLabbeta/friends-beta/?v=2`, bấm `Ctrl+Shift+R` trên máy tính hoặc mở tab ẩn danh để tránh cache phiên bản cũ.
+6. Đăng nhập bằng tài khoản ExamLab đã xác nhận email. Nếu chưa tạo hồ sơ Beta, nhập tên và bấm Lưu hồ sơ Beta.
 
-   Nếu tên repository của bạn khác, thay `ExamLabbeta` bằng tên thực tế.
+**Không cần sửa `supabase-config.js`** nếu Beta V1 và ExamLab đã kết nối cùng một Supabase.
 
-**KHÔNG sửa** `index.html` ở thư mục gốc, `profile.html`, `login.html`, bảng `examlab_attempts` hoặc bảng `examlab_decks`. Website chính vẫn hoạt động như trước.
+## Kiểm thử thách đấu bằng hai tài khoản
 
-## Cách kiểm tra bằng 2 tài khoản
+1. Đăng nhập bằng tài khoản A, bật cho phép tìm kiếm qua email, lưu hồ sơ.
+2. Tài khoản B cũng đăng nhập Beta, bật tìm kiếm; A tìm B bằng địa chỉ Gmail chính xác.
+3. A gửi lời mời kết bạn, B chấp nhận.
+4. A bấm **⚔ Thách đấu** bên cạnh B; B mở Beta và bấm **Chấp nhận** ở mục Thách đấu 1–1.
+5. A và B mỗi người làm một lượt 10 câu hằng ngày của Beta. Bấm cập nhật bảng thách đấu: người điểm cao hơn thắng; hòa điểm so thời gian làm.
+6. Dùng nút **Tuần này / Tháng này** để xem bảng xếp hạng, kéo xuống dưới để xem huy hiệu và lịch sử điểm.
 
-- Dùng hai tài khoản ExamLab **đã xác nhận email** ở hai trình duyệt/hồ sơ riêng.
-- Cả hai truy cập `/friends-beta/`, lưu hồ sơ Beta, bật “Cho phép người khác tìm mình bằng Gmail”. Cài đặt này mặc định tắt để bảo vệ riêng tư.
-- Tài khoản A tìm đúng email tài khoản B và gửi lời mời; tài khoản B chấp nhận ở mục Lời mời; kiểm tra danh sách bạn bè hai phía.
-- Mỗi tài khoản bấm “Bắt đầu thi đua”, làm 10 câu và nộp trong 10 phút.
-- Xem bảng xếp hạng tuần, thử tải lại để kiểm tra dữ liệu vẫn còn.
-- Thử tắt cho phép tìm và tra cứu lại bằng tài khoản khác: người đã tắt không xuất hiện trong kết quả tìm.
+## Quyền riêng tư và chống gian lận
 
-## Quy tắc & an toàn
+- Email chỉ dùng để tìm chính xác tài khoản tự bật tìm kiếm; không liệt kê hàng loạt và không hiển thị email người khác.
+- Beta sử dụng các hàm RPC `SECURITY DEFINER` kiểm tra `auth.uid()`. Các bảng nhạy cảm bật RLS và không cho client truy vấn trực tiếp.
+- Thời gian thử thách, đáp án đúng và số điểm được xử lý trên Supabase của Beta V1. V2 chỉ đọc điểm đã chấm trên máy chủ để đối chiếu thách đấu.
+- Thách đấu 1–1 được tính **trong ngày theo giờ Việt Nam**, không kéo dài sang ngày hôm sau. Nếu hai bên không hoàn thành, trạng thái hiển thị hết hạn hoặc thiếu kết quả.
+- Điểm và dữ liệu của ExamLab chính **không bị thay đổi**.
 
-- Chỉ tìm bằng **email chính xác**, không liệt kê người dùng hoặc công khai email khác.
-- Người được tìm phải tự vào Beta và cho phép được tìm. Tối đa 12 lượt tra cứu/giờ/tài khoản.
-- Một tài khoản chỉ có **1 lượt thi hằng ngày**, thời gian 10 phút, 10 câu/ngày. Điểm = số câu đúng × 100, tối đa 1000 điểm mỗi ngày. Câu hỏi và đáp án chuẩn lưu trong Supabase; không phát đáp án chuẩn về trình duyệt.
-- Điểm thi đua tổng hợp theo tuần (thứ Hai đến Chủ nhật, múi giờ Việt Nam), **chỉ hiện bạn và bạn bè đã chấp nhận**.
-- Hủy kết bạn sẽ loại người đó khỏi bảng xếp hạng của bạn (dữ liệu điểm của họ không bị xóa).
-- Không được cộng điểm vào bài thi ExamLab chính. Chưa hỗ trợ tin nhắn, bình luận hay đua top toàn hệ thống.
-- Không dùng khóa `service_role` / secret API key trong website hoặc ZIP. Nếu web yêu cầu sửa dữ liệu SQL, thực hiện trong Supabase Dashboard, không đưa thông tin truy cập SQL lên GitHub.
-- Các quyền sử dụng dữ liệu Beta được kiểm soát trên Supabase qua những RPC có xác thực người dùng, RLS được bật cho 5 bảng. Vì là beta, nên kiểm tra kỹ trước khi mở rộng cho nhiều người.
+## Khi có lỗi
 
-## Hạn chế bản Beta
+- **Không thấy nội dung V2:** Kiểm tra `friends-beta/js/beta-v2.js`, làm mới trang và mở Console (F12).
+- **Chưa cài SQL V2:** Chạy đúng `sql/UPGRADE_BETA_V2.sql` trong dự án Supabase mà ExamLab đang kết nối.
+- **Không thấy tên bạn bè:** Cả hai tài khoản phải lưu hồ sơ Beta; để tìm Gmail, người được tìm phải bật cho phép tìm kiếm.
+- **Không thấy kết quả 1–1:** Hai bên phải chấp nhận thách đấu và hoàn thành lượt thi hằng ngày cùng ngày.
+- **Bị giới hạn lời mời:** Chỉ có 3 lượt gửi thách đấu mỗi ngày để tránh spam.
 
-- Câu hỏi thử thách là bộ 30 câu được biên soạn riêng để kiểm thử, chưa đồng bộ đề từ 7 bộ đề ExamLab.
-- Lời mời không gửi email thông báo; người nhận mở trang Beta để xem.
-- Nếu hết 10 phút mà chưa nộp, lượt thi trong ngày kết thúc và không ghi điểm. Không hoàn lại lượt.
-- Nếu đang làm mà đổi thiết bị/tải lại trang, thời gian vẫn tính từ lần mở đầu, câu trả lời chưa nộp có thể bị mất.
-- Để xóa toàn bộ dữ liệu Beta khi thử xong: cân nhắc sao lưu rồi xóa 5 bảng `examlab_beta_*` và các hàm `examlab_beta_*` bằng Supabase SQL Editor. **Không xóa bảng chính hoặc tài khoản Supabase.**
+## Giới hạn kiểm thử
+
+- Đã kiểm tra cú pháp JavaScript, giao diện và luồng thao tác bằng dữ liệu Supabase mô phỏng trên màn hình 360, 393 và 1280px.
+- Chưa chạy SQL hoặc thử nghiệm end-to-end với **dự án Supabase thật** của bạn. Hãy test bằng 2 tài khoản trước khi sử dụng rộng rãi.

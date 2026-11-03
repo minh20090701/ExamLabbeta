@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#211b19">
-  <meta name="description" content="ExamLab Friends Beta: kết bạn bằng email, gửi lời mời, thử thách hằng ngày và bảng xếp hạng bạn bè.">
+  <meta name="description" content="ExamLab Friends Beta: kết bạn bằng email, gửi lời mời, thử thách hằng ngày, thách đấu bạn bè và bảng xếp hạng.">
   <title>Hội bạn đồng môn · ExamLab Beta</title>
-  <link rel="stylesheet" href="css/beta.css?v=1">
+  <link rel="stylesheet" href="css/beta.css?v=2">
 </head>
 <body>
   <header class="bar">
@@ -24,7 +24,7 @@
       <div class="hero-copy"><div class="eyebrow">PHÒNG GIAO LƯU • THI ĐUA HỌC TẬP</div>
       <h1>Học cùng bằng hữu.<br><em>Thi đua mỗi ngày.</em></h1>
       <p>Kết nối bằng Gmail, gửi lời mời kết bạn và cùng chinh phục 10 câu hỏi mới mỗi ngày. Điểm thi đua Beta được lưu riêng, không tác động điểm bài thi ExamLab chính.</p>
-      <div class="hero-tags"><span>✧ Lời mời kết bạn</span><span>◇ 10 câu / 10 phút</span><span>♛ Đua top theo tuần</span></div></div>
+      <div class="hero-tags"><span>✧ Lời mời kết bạn</span><span>◇ 10 câu / 10 phút</span><span>♛ Đua top theo tuần</span><span>⚔ Thách đấu 1–1</span></div></div>
       <div class="hero-art" aria-hidden="true"><div class="ring ring-one"></div><div class="ring ring-two"></div><div class="art-star">✦</div><div class="art-text">友</div><div class="art-caption">KẾT GIAO • CẦU TIẾN</div></div>
     </section>
 
@@ -58,7 +58,14 @@
           <div class="mini-stat"><span>ĐIỂM TUẦN NÀY</span><strong id="myPoints">0</strong></div>
         </div>
 
-        <div class="cols">
+        <nav class="beta-jump" aria-label="Đi nhanh đến tính năng Beta">
+          <a href="#socialArea">🤝 Kết bạn</a>
+          <a href="#duelArea">⚔ Thách đấu <span id="duelAlert" class="alert-count" hidden>0</span></a>
+          <a href="#boardArea">🏆 Bảng đua top</a>
+          <a href="#progressArea">🏅 Thành tích</a>
+        </nav>
+
+        <div class="cols" id="socialArea">
           <div class="stack">
             <section class="panel">
               <div class="section-head"><div><small class="eyebrow">TÌM NGƯỜI ĐỒNG HÀNH</small><h2>Tìm bạn bằng Gmail</h2></div><span class="section-icon" aria-hidden="true">✉</span></div>
@@ -85,14 +92,31 @@
               <button id="startDaily" class="btn accent" type="button">Bắt đầu thi đua</button>
               <div id="dailyNote" class="muted small">Điểm thi đua không cộng vào bài làm ExamLab chính.</div>
             </section>
-            <section class="panel">
-              <div class="section-head"><div><small class="eyebrow">VINH DANH BẰNG HỮU</small><h2>Bảng thi đua tuần</h2></div><span class="section-icon" aria-hidden="true">♛</span></div>
-              <p class="muted">Xếp hạng chỉ gồm bạn và những người đã kết bạn. Hòa điểm thì ưu tiên tổng thời gian làm bài ít hơn.</p>
+            <section class="panel" id="duelArea">
+              <div class="section-head"><div><small class="eyebrow">THƯ MỜI THỬ SỨC</small><h2>⚔ Thách đấu 1–1 <span id="duelCount" class="heading-count" hidden></span></h2></div></div>
+              <p class="muted">Thách đấu bạn bè trong ngày. Hai người làm <strong>cùng bộ 10 câu hôm nay</strong>; không mất lượt thi thêm. Điểm cao hơn thắng, hòa điểm thì người làm nhanh hơn thắng.</p>
+              <div id="duelList" class="list-stack"><p class="empty">Đang tải lời thách đấu…</p></div>
+              <button id="duelRefresh" type="button" class="btn subtle full">↻ Cập nhật thách đấu</button>
+            </section>
+            <section class="panel" id="boardArea">
+              <div class="section-head"><div><small class="eyebrow">VINH DANH BẰNG HỮU</small><h2>Bảng thi đua</h2></div><span class="section-icon" aria-hidden="true">♛</span></div>
+              <p class="muted">Chỉ gồm bạn và bạn bè đã kết nối. Hòa điểm ưu tiên tổng thời gian làm bài ít hơn.</p>
+              <div class="rank-tabs" role="group" aria-label="Chọn kỳ xếp hạng"><button id="rankWeek" class="rank-tab active" type="button" aria-pressed="true">Tuần này</button><button id="rankMonth" class="rank-tab" type="button" aria-pressed="false">Tháng này</button></div>
               <div id="weeklyBoard" class="leaderboard"></div>
+              <div id="monthlyBoard" class="leaderboard" hidden></div>
               <button id="refreshBtn" type="button" class="btn subtle full">↻ Cập nhật bảng xếp hạng</button>
             </section>
           </div>
         </div>
+        <section class="panel progress-panel" id="progressArea">
+          <div class="section-head"><div><small class="eyebrow">HÀNH TRÌNH CẦU TIẾN</small><h2>🏅 Thành tích của bạn</h2></div><span class="section-icon" aria-hidden="true">✦</span></div>
+          <div id="personalStats" class="progress-stats"><p class="muted">Đang tải số liệu cá nhân…</p></div>
+          <h3 class="subhead">Huy hiệu học tập</h3>
+          <div id="badgeList" class="badges-grid"></div>
+          <div class="section-head history-head"><div><h3>Lịch sử 14 lần thi gần đây</h3><p class="muted small">Điểm lấy từ máy chủ, không phải điểm tự nhập.</p></div></div>
+          <div id="personalHistory" class="history-grid"></div>
+        </section>
+        <p class="beta-safety">🔔 Lời mời được cập nhật khi bạn vào trang hoặc nhấn Cập nhật. Beta không gửi thông báo đẩy hay email. Dữ liệu và bảng xếp hạng chỉ thuộc khu vực Beta.</p>
       </div>
     </div>
   </main>
@@ -109,6 +133,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../supabase-config.js"></script>
   <script src="../js/supabase-client.js"></script>
-  <script src="js/beta.js?v=1"></script>
+  <script src="js/beta.js?v=2"></script>
+  <script src="js/beta-v2.js?v=2"></script>
 </body>
 </html>

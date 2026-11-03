@@ -3,3 +3,40 @@
 @media(max-width:850px){.hero{grid-template-columns:1fr;padding:28px}.hero-art{display:none}.cols{grid-template-columns:1fr}.shell{padding:0 14px}.panel{padding:20px}.bar-inner{min-height:68px}.hero h1{font-size:38px}}
 @media(max-width:480px){.bar-right{gap:6px}.back-link{font-size:11px}.beta-pill{font-size:9px;padding:6px}.brand strong{font-size:19px}.brand small{font-size:8px}.brand-seal{width:34px;height:34px;font-size:21px}.hero{padding:23px 20px;margin-top:15px}.hero h1{font-size:32px}.hero p{font-size:13px}.hero-tags{gap:6px}.hero-tags span{font-size:10px}.overview-stats{gap:8px}.mini-stat{padding:11px 8px}.mini-stat span{font-size:9px}.mini-stat strong{font-size:23px}.section-head{align-items:start;flex-wrap:wrap}.search-row{flex-wrap:wrap}.search-row .btn{width:100%}.list-card{align-items:flex-start;flex-wrap:wrap}.list-actions{margin-left:48px}.quiz-box{margin:0;padding:18px 13px;border-radius:14px}.quiz-layer{padding:5px}.quiz-timer{font-size:19px;padding:9px}.quiz-actions{flex-wrap:wrap}.quiz-actions .btn{width:100%}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+/* V2 — các thành phần mở rộng chỉ ảnh hưởng trang Beta */
+.beta-jump{display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin;margin:16px 0;padding:2px 0 9px}
+.beta-jump a{flex:none;display:flex;align-items:center;gap:6px;text-decoration:none;color:#f3d0a6;background:#30251f;border:1px solid #71513e;border-radius:11px;padding:11px 14px;font-size:12px;font-weight:750;white-space:nowrap}
+.beta-jump a:hover,.beta-jump a:focus-visible{background:#553b2c;border-color:#ba8b62}
+.alert-count,.heading-count{display:inline-flex;min-width:20px;height:20px;align-items:center;justify-content:center;border-radius:99px;background:#b9563f;color:#fff;font:800 11px system-ui;padding:1px 5px}
+.alert-count[hidden],.heading-count[hidden],.leaderboard[hidden]{display:none!important}
+.rank-tabs{display:flex;gap:8px;margin:13px 0 15px;background:#332821;border-radius:12px;padding:5px}
+.rank-tab{flex:1;border:0;background:transparent;border-radius:9px;padding:10px 12px;color:#c5a78d;font-weight:800;font-size:13px}
+.rank-tab.active{background:#704a38;color:#ffe3b7;box-shadow:0 3px 9px #100b0845}
+.rank-tab:focus-visible{outline:2px solid #edc58b;outline-offset:2px}
+#duelArea,#boardArea,#progressArea,#socialArea{scroll-margin-top:95px}
+.duel-card{border:1px solid #69503e;background:#352923;padding:13px;border-radius:13px;display:grid;gap:9px}
+.duel-top{display:flex;align-items:flex-start;justify-content:space-between;gap:11px;flex-wrap:wrap}
+.duel-main{min-width:0;flex:1}.duel-main strong{display:block;overflow-wrap:anywhere}.duel-main small{display:block;font-size:11px;color:#c6aa91;margin-top:4px}
+.duel-status{font-size:11px;font-weight:850;padding:6px 9px;border-radius:99px;background:#44342b;border:1px solid #75533c;color:#f1c59b}
+.duel-status.new{background:#6a3b2c;color:#ffe0b8}.duel-status.win{background:#234b32;color:#baf2c6;border-color:#4c8057}
+.duel-status.complete{background:#403d2a;color:#f0e2ac}.duel-status.closed{background:#322c28;color:#c3b2a2}
+.duel-actions{display:flex;gap:8px;flex-wrap:wrap}.duel-scores{font-size:12px;color:#e3c3a6;margin:0}
+.v2-inline-note{font-size:12px;line-height:1.6;color:#bbebc0;border:1px solid #46704e;background:#29382b;border-radius:10px;padding:10px;margin:12px 0 0}
+.v2-inline-note.is-error{color:#ffd0c8;border-color:#ad6259;background:#412923}
+.progress-panel{margin-top:18px}
+.progress-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.progress-stat{min-width:0;display:grid;gap:3px;border:1px solid #634b38;background:#322721;padding:14px 16px;border-radius:13px}
+.progress-stat .progress-symbol{font-size:19px}.progress-stat strong{font:800 23px Georgia,serif;color:#f6d19c}.progress-stat small{font-size:11px;color:#c0aa93}
+.badges-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.badge-card{display:flex;align-items:center;flex-direction:column;text-align:center;gap:5px;padding:16px 9px;border:1px solid #755039;background:#3a2c23;border-radius:14px;min-height:147px}
+.badge-card .badge-art{font-size:28px}.badge-card strong{font-size:12px;color:#ffdbaf}.badge-card small{font-size:10px;line-height:1.45;color:#c9aa8c}
+.badge-card.locked{opacity:.45;filter:grayscale(.7)}.badge-earned{margin-top:auto;font-size:10px;font-weight:800;color:#b8e0b6}
+.history-head{margin:20px 0 10px}.history-head h3{margin:0 0 4px;color:#f4d5ab}.history-head p{margin:0}
+.history-grid{display:grid;gap:8px}.history-item{display:grid;grid-template-columns:150px 1fr 92px;align-items:center;gap:13px;border:1px solid #634a38;background:#30251f;border-radius:11px;padding:11px 14px}
+.history-info strong{font-size:13px;display:block}.history-info small{font-size:11px;color:#b99d87}.history-meter{height:8px;border-radius:99px;background:#5b4132;overflow:hidden}.history-meter span{height:100%;display:block;background:linear-gradient(90deg,#b55f47,#f1c48c);border-radius:99px}
+.history-score{font-size:13px;text-align:right;white-space:nowrap;color:#eec68f}
+.beta-safety{margin:15px 0 0;color:#bb9b83;font-size:12px;line-height:1.6}
+@media(max-width:1000px){.badges-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:620px){.progress-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.badges-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.history-item{grid-template-columns:116px 1fr 74px;gap:7px;padding:9px}.history-score{font-size:11px}.progress-stat strong{font-size:20px}.beta-jump a{padding:10px}}
+@media(max-width:380px){.history-item{grid-template-columns:1fr auto}.history-meter{grid-row:2;grid-column:1/-1}.progress-stat{padding:10px}}
